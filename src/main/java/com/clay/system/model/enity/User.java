@@ -1,8 +1,6 @@
 package com.clay.system.model.enity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -16,10 +14,9 @@ import javax.persistence.*;
  * 用户表
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "t_user")
+@SuppressWarnings("all")
 public class User
 {
     @Id
@@ -35,6 +32,7 @@ public class User
     @Column(name = "password",columnDefinition = "varchar(20)",nullable = false)
     private String password;
 
+    //1 正常,-1 禁用
     @Column(name = "status",columnDefinition = "tinyint default 1",nullable = false)
     private int status;
 

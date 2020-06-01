@@ -1,0 +1,25 @@
+{
+  "info": "前端传递给后端的采购记录格式",
+  "tip": "备注信息",
+  "purchaseCode": "采购代码，根据该对象hash出来的",
+  "time": "发生时间，后端生成，格式：yyyy-MM-dd hh:mm:ss",
+  "drugs": [
+    {
+      "id": "药物id,这个的定义存在一定问题",
+      "drugName": "药物名",
+      "drugNum": "本次采购该药物的数量",
+      "singlePrice": "单价",
+      "typeCode": "类型代码，通过添加页面下拉获取",
+      "description": "药物描述",
+
+      "suppliersInfo": {
+        "name": "供应商名",
+        "brand": "商标",
+        "phoneNum": "电话号",
+        "email": "邮箱",
+        "address": "地址",
+        "supplierCode": "供应商代码，需要在后端使用供应商对象进行hash"
+      }
+    }
+  ]
+}

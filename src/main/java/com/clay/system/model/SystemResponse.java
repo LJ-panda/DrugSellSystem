@@ -10,6 +10,8 @@ import java.util.HashMap;
  * @Blog www.wandererchen.xyz
  * @Date 2020/5/29 20:29
  * @Version 1.0
+ *
+ *
  * 统一响应体
  */
 public class SystemResponse extends HashMap<String, Object>

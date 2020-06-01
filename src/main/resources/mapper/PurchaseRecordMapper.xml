@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.PurchaseRecordMapper">
+
+    <insert id="insertRecord" parameterType="com.clay.system.model.enity.PurchaseRecord">
+        INSERT INTO t_purchaseRecord(tip,time,operationUser,purchaseCode,totalPrice)
+        VALUES(#{tip},#{time},#{operationUser},#{purchaseCode},#{totalPrice})
+    </insert>
+    <select id="queryAll" resultType="com.clay.system.model.enity.PurchaseRecord">
+        SELECT * FROM t_purchaseRecord
+    </select>
+    <select id="queryById" resultType="com.clay.system.model.enity.PurchaseRecord">
+        SELECT * FROM t_purchaseRecord WHERE id = #{id}
+    </select>
+    <select id="queryByCode" resultType="com.clay.system.model.enity.PurchaseRecord">
+        SELECT * FROM t_purchaseRecord WHERE purchaseCode = #{code}
+    </select>
+</mapper>

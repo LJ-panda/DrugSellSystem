@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.DetailsMapper">
+
+    <insert id="insertDetails" parameterType="com.clay.system.model.enity.PurchaseDetails">
+        INSERT INTO t_purchaseDetails(purchaseCode,drugId,drugNum,singlePrice,totalPrice)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.purchaseCode},
+            #{item.drugId},
+            #{item.drugNum},
+            #{item.singlePrice},
+            #{item.totalPrice}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryByCode" resultType="com.clay.system.model.enity.PurchaseDetails">
+        SELECT * FROM t_purchaseDetails WHERE purchaseCode = #{purchaseCode}
+    </select>
+</mapper>

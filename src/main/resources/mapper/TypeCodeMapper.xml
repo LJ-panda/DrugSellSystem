@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.TypeCodeMapper">
+    <insert id="insert" parameterType="com.clay.system.model.enity.DrugTypeCode">
+        INSERT INTO t_drugTypeCode(typeName,description)VALUES(#{typeName},#{description})
+    </insert>
+    <update id="updateById" parameterType="com.clay.system.model.enity.DrugTypeCode">
+        UPDATE t_drugTypeCode SET typeName=#{typeName},description=#{description} WHERE id = #{id}
+    </update>
+
+    <delete id="delById">
+        DELETE FROM t_drugTypeCode WHERE id = #{id}
+    </delete>
+
+    <select id="queryAllTypeCode" resultType="com.clay.system.model.enity.DrugTypeCode">
+        SELECT * FROM t_drugTypeCode
+    </select>
+</mapper>

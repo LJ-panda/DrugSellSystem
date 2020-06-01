@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.SupplierMapper">
+
+    <insert id="insertSupplier">
+        INSERT INTO t_suppliers(name,brand,phoneNum,email,address,supplierCode)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.name},
+            #{item.brand},
+            #{item.phoneNum},
+            #{item.email},
+            #{item.address},
+            #{item.supplierCode}
+            )
+        </foreach>
+    </insert>
+    <insert id="insert">
+        INSERT INTO t_suppliers(name,brand,phoneNum,email,address,supplierCode)
+        VALUES(#{name},#{brand},#{phoneNum},#{email},#{address},#{supplierCode})
+    </insert>
+    <select id="queryAll" resultType="com.clay.system.model.enity.DrugSuppliersInfo">
+        SELECT * FROM t_suppliers
+    </select>
+    <select id="queryBySupplierCode" resultType="com.clay.system.model.enity.DrugSuppliersInfo">
+        SELECT * FROM t_suppliers WHERE supplierCode =#{code}
+    </select>
+</mapper>

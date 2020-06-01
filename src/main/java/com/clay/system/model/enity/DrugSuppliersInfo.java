@@ -1,11 +1,8 @@
 package com.clay.system.model.enity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 /**
  * @Author clay
@@ -17,21 +14,20 @@ import java.util.Objects;
  * 供货商信息表
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "t_suppliers")
+@SuppressWarnings("all")
 public class DrugSuppliersInfo
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //供货啥名
+    //供应商名
     @Column(name = "name",columnDefinition = "varchar(66)",nullable = false)
     private String name;
 
-    //商标
+    //商标，无则和name相同
     @Column(name = "brand",columnDefinition = "varchar(20)",nullable = false)
     private String brand;
 
@@ -50,6 +46,4 @@ public class DrugSuppliersInfo
     //供应商对象hashcode,在其它信息已设定的情况下
     @Column(name = "supplierCode",columnDefinition = "int",nullable = false)
     private int supplierCode;
-
-
 }

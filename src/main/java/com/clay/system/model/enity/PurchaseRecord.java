@@ -19,8 +19,6 @@ import java.util.Date;
  * 采购记录表
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "t_purchaseRecord")
 @SuppressWarnings("all")
@@ -30,7 +28,7 @@ public class PurchaseRecord
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //小记录
+    //小记录，用于描述本次采购记录
     @Column(name = "tip",columnDefinition = "text")
     private String tip;
 
@@ -43,5 +41,11 @@ public class PurchaseRecord
     @Column(name = "operationUser",columnDefinition = "varchar(55)",nullable = false)
     private String operationUser;
 
+    //采购码，用于本次的整个采购对象的hash,和详情表关联
+    @Column(name = "purchaseCode",columnDefinition = "int",nullable = false)
+    private int purchaseCode;
+
+    @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
+    private float totalPrice;
 
 }

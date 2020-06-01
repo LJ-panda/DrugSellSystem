@@ -1,1 +1,28 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /drugSystem
+spring:
+  profiles:
+    active: dev
+
+    ## freemarker配置
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+  redis:
+    host: 127.0.0.1
+    port: 16379
+    jedis:
+      pool:
+        max-idle: 8
+        max-active: 8
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+
 

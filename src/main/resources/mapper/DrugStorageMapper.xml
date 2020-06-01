@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.DrugStorageMapper">
+    <insert id="insertDrugInfo">
+        INSERT INTO t_drugStorage(drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
+        VALUES(#{drugName},#{drugNum},#{createTime},#{typeCodeId},#{supplier},#{description},#{drugCode})
+    </insert>
+    <insert id="insertAll" parameterType="com.clay.system.model.enity.DrugStorage">
+        INSERT INTO t_drugStorage(drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.drugName},
+            #{item.drugNum},
+            #{item.createTime},
+            #{item.typeCodeId},
+            #{item.supplier},
+            #{item.description},
+            #{item.drugCode}
+            )
+        </foreach>
+    </insert>
+    <update id="update">
+        UPDATE t_drugStorage SET drugNum=drugNum+#{drugNum} WHERE drugCode = #{drugCode}
+    </update>
+
+    <select id="queryAll" resultType="com.clay.system.model.enity.DrugStorage">
+        SELECT * FROM t_drugStorage
+    </select>
+
+    <select id="queryByType" resultType="com.clay.system.model.enity.DrugStorage">
+        SELECT * FROM t_drugStorage WHERE typeCodeId = #{typeCode}
+    </select>
+    <select id="queryBySupplier" resultType="com.clay.system.model.enity.DrugStorage">
+        SELECT * FROM t_drugStorage where supplier = #{supplierCode}
+    </select>
+    <select id="queryById" resultType="com.clay.system.model.enity.DrugStorage">
+        SELECT * FROM t_drugStorage WHERE id = #{id}
+    </select>
+    <select id="queryByCode" resultType="com.clay.system.model.enity.DrugStorage">
+        SELECT * FROM t_drugStorage WHERE drugCode = #{drugCode}
+    </select>
+
+</mapper>
