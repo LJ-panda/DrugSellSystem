@@ -5,8 +5,10 @@ import com.clay.system.model.enity.DrugSuppliersInfo;
 import com.clay.system.service.SupplierService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,6 +26,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class SupplierServiceImp implements SupplierService
 {
+
     private SupplierMapper supplierMapper;
 
     @Override

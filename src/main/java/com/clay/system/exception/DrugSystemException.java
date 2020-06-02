@@ -9,6 +9,9 @@ package com.clay.system.exception;
  */
 public class DrugSystemException extends Exception
 {
+
+    private static final long serialVersionUID = -207661184425359113L;
+
     public DrugSystemException(String msg)
     {
         super(msg);

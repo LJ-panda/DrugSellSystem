@@ -5,8 +5,10 @@ import com.clay.system.model.enity.User;
 import com.clay.system.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImp implements UserService
 {
+
     private UserMapper userMapper;
 
     @Override

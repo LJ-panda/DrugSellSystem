@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
@@ -46,8 +47,10 @@ public class VisitedLogger extends BaseAop
         String methodName=point.getSignature().getName();
         String description=getDescription(point.getTarget().getClass(),
                 (MethodSignature) point.getSignature());
+
         log.debug("接口方法 {}\t 描述为 {} 被请求，参数为 {}",
                 methodName, description, args);
+
         Object obj=point.proceed(args);
         logService.saveLog(initLog(description,LogType.VISITED));
         return obj;

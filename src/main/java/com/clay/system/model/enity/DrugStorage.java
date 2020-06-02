@@ -46,8 +46,10 @@ public class DrugStorage
     private Date createTime;
 
     //新增库存等的时间
-    @Column(name = "updateTime",columnDefinition = "timestamp")
-    private Date updateTime;
+    //两个 timestamp 字段会报错
+    @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
+    @Column(name = "updatedTime",columnDefinition = "datetime")
+    private Date updatedTime;
 
     //类型码的ID
     @Column(name = "typeCodeId",columnDefinition = "tinyint",nullable = false)

@@ -13,13 +13,13 @@ spring:
     content-type: text/html
     charset: UTF-8
     ##redis配置，根据shiro是否使用redis确定，暂时没用
-  redis:
-    host: 127.0.0.1
-    port: 16379
-    jedis:
-      pool:
-        max-idle: 8
-        max-active: 8
+#  redis:
+#    host: 127.0.0.1
+#    port: 16379
+#    jedis:
+#      pool:
+#        max-idle: 8
+#        max-active: 8
 
 
 mybatis:

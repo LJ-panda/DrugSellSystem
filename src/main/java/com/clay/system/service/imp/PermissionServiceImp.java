@@ -5,8 +5,10 @@ import com.clay.system.mapper.UserAndPermissionMapper;
 import com.clay.system.model.enity.Permission;
 import com.clay.system.service.PermissionService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**

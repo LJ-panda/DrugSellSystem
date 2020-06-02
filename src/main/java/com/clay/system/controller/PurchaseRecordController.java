@@ -7,6 +7,7 @@ import com.clay.system.service.RecordService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 //@Validated
+
 @RestController
 @RequestMapping(value = "/api/record")
 @AllArgsConstructor

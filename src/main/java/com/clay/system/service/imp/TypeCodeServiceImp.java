@@ -4,8 +4,10 @@ import com.clay.system.mapper.TypeCodeMapper;
 import com.clay.system.model.enity.DrugTypeCode;
 import com.clay.system.service.TypeCodeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TypeCodeServiceImp implements TypeCodeService
 {
+
     private TypeCodeMapper typeCodeMapper;
 
     @Override

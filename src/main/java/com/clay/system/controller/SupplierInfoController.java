@@ -5,10 +5,12 @@ import com.clay.system.model.SystemResponse;
 import com.clay.system.model.enity.DrugSuppliersInfo;
 import com.clay.system.service.SupplierService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Author clay
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * 供应商信息控制器
  * 需要服务：{@link SupplierService}
  */
-@Slf4j
+//@Slf4j
 @RestController
 @RequestMapping(value = "/api/supplier")
 @AllArgsConstructor

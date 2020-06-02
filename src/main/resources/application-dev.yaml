@@ -1,15 +1,19 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.100.27.96:3306/drugdb
+    url: jdbc:mysql://47.100.27.96:3306/drugdb?characterEncoding=utf-8
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
-    data: classpath:init.sql
+    data: classpath:/init.sql
     initialization-mode: always
   jpa:
     database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect          #指定数据库引擎为Innodb
     show-sql: true
     hibernate:
       naming:                        #表字段命名策略
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: create

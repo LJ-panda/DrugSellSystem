@@ -5,12 +5,13 @@ import com.clay.system.model.SystemResponse;
 import com.clay.system.model.enity.DrugTypeCode;
 import com.clay.system.service.TypeCodeService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.constraints.Positive;
 
 /**
@@ -24,7 +25,7 @@ import javax.validation.constraints.Positive;
  * 主要用于类型代码查询等
  * 需要服务：{@link TypeCodeService}
  */
-@Slf4j
+//@Slf4j
 @Validated
 @RestController
 @RequestMapping(value = "/api/typecode")

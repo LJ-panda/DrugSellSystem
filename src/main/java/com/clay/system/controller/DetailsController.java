@@ -4,8 +4,8 @@ import com.clay.system.annotation.Description;
 import com.clay.system.model.SystemResponse;
 import com.clay.system.service.DetailsService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * 需要服务：{@link DetailsService}
  */
-@Slf4j
+//@Slf4j
 @RestController
 @RequestMapping(value = "/api/details")
 @AllArgsConstructor

@@ -79,6 +79,11 @@ public class ConvertUtils
     }
 
 
+    /**
+     * 在添加用户的时候，通过该方法转换用户对象
+     * @param user voUser
+     * @return user
+     */
     public static User buildUserByVo(VoUser user)
     {
         User u=new User();

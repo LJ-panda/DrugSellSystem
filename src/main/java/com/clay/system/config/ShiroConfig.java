@@ -18,6 +18,8 @@ import java.util.Map;
  * @Blog www.wandererchen.xyz
  * @Date 2020/6/1 16:25
  * @Version 1.0
+ *
+ * 安全框架shiro的配置
  */
 @Configuration
 public class ShiroConfig

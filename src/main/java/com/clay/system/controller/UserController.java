@@ -6,17 +6,18 @@ import com.clay.system.model.vo.VoUser;
 import com.clay.system.service.UserService;
 import com.clay.system.utils.ConvertUtils;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -31,7 +32,7 @@ import javax.validation.constraints.NotBlank;
  *
  * 需要服务：{@link UserService}
  */
-@Slf4j
+//@Slf4j
 @Validated
 @RestController
 @RequestMapping(value = "/api/user")
