@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -25,16 +29,21 @@ public class Drug
 
     private int drugCode;
 
-    private String drugName;  //药物名
+    @NotBlank(message = "药物名不可为空")
+    private String drugName;
 
+    @Positive(message = "采购数量必须大于0")
     private int drugNum;
 
+    @Positive(message = "单价不可小于等于0")
     private float singlePrice;
 
     private int typeCode;   //通过增添页下拉选取
 
+    @Valid
     private DrugSuppliersInfo suppliersInfo;  //供应商
 
+    @Size(max = 150,message = "药物描述不可超过150字")
     private String description;
 
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)

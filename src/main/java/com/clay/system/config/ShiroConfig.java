@@ -1,14 +1,10 @@
 package com.clay.system.config;
 
-import org.apache.shiro.cache.CacheManager;
+import com.clay.system.service.UserService;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -46,9 +42,9 @@ public class ShiroConfig
     }
 
     @Bean
-    public UserRealm userRealm()
+    public UserRealm userRealm(UserService userService)
     {
-        return new UserRealm();
+        return new UserRealm(userService);
     }
 
 //    @Bean
@@ -60,21 +56,21 @@ public class ShiroConfig
 //       return sessionDAO;
 //    }
 
-    @Bean
-    public SessionManager sessionManager()
-    {
-
-        return new DefaultWebSessionManager();
-    }
-
-    @Bean
-    public CacheManager cacheManager(RedisManager redisManager)
-    {
-        RedisCacheManager cacheManager=new RedisCacheManager();
-        cacheManager.setExpire(60*10);
-        cacheManager.setRedisManager(redisManager);
-        return cacheManager;
-    }
+//    @Bean
+//    public SessionManager sessionManager()
+//    {
+//
+//        return new DefaultWebSessionManager();
+//    }
+//
+//    @Bean
+//    public CacheManager cacheManager(RedisManager redisManager)
+//    {
+//        RedisCacheManager cacheManager=new RedisCacheManager();
+//        cacheManager.setExpire(60*10);
+//        cacheManager.setRedisManager(redisManager);
+//        return cacheManager;
+//    }
 
     /**
      * 开启注解权限

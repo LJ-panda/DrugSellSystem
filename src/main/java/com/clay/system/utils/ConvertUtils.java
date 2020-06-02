@@ -3,9 +3,12 @@ package com.clay.system.utils;
 import com.clay.system.model.enity.DrugStorage;
 import com.clay.system.model.enity.PurchaseDetails;
 import com.clay.system.model.enity.PurchaseRecord;
+import com.clay.system.model.enity.User;
 import com.clay.system.model.vo.BuyRecord;
 import com.clay.system.model.vo.Drug;
 import com.clay.system.model.vo.PurchaseDataModel;
+import com.clay.system.model.vo.VoUser;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 
@@ -19,6 +22,7 @@ import java.util.LinkedList;
  * 数据转换工具类
  * 主要用于组装数据库返回的数据、或者组装前端传递的数据
  */
+@Slf4j
 public class ConvertUtils
 {
     /**
@@ -42,8 +46,8 @@ public class ConvertUtils
         model.setRecord(record1);
         record.getDrugs()
                 .forEach(a->{
-                    a.setDrugCode(a.hashCode());
-                    a.getSuppliersInfo().setSupplierCode(a.getSuppliersInfo().hashCode());
+                    a.setDrugCode(a.hashCode());          //药物代码
+                    a.getSuppliersInfo().setSupplierCode(a.getSuppliersInfo().hashCode());  //药物供应商代码
                     //添加库存对象
                     model.getDrugStorageList().add(buildDrugStorage(a));
                     //添加所有供应商对象以便后期写库
@@ -70,8 +74,19 @@ public class ConvertUtils
         storage.setDrugNum(drug.getDrugNum());            //数量
         storage.setTypeCodeId(drug.getTypeCode());      //类型代码
         storage.setSupplier(drug.getSuppliersInfo().getSupplierCode());      //供应商
+        log.debug("转换的drug对象:{}",storage);
         return storage;
     }
 
 
+    public static User buildUserByVo(VoUser user)
+    {
+        User u=new User();
+        u.setEmail(user.getEmail());
+        u.setDescription(user.getDescription());
+        u.setPassword(user.getPassword());
+        u.setStatus(user.getStatus()==1||user.getStatus()==-1?user.getStatus():1);
+        u.setUserName(user.getUserName());
+        return u;
+    }
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * @Author clay
@@ -28,11 +30,13 @@ public class DrugTypeCode
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "类型名不可为空")
     //类型名
     @Column(name = "typeName",columnDefinition = "varchar(66)",nullable = false)
     private String typeName;
 
 
+    @Size(max = 150,message = "描述请控制在150字以内")
     @Column(name = "description",columnDefinition = "text")
     private String description;
 

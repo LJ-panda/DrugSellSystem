@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class BuyRecord
 {
     private int id;
 
+    @Size(max = 150,message = "tip不可超过150字")
     private String tip;   //采购小记
 
     private int purchaseCode;  //采购码
@@ -31,6 +34,7 @@ public class BuyRecord
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
     private Date time;
 
+    @Valid
     private List<Drug>drugs;   //采购的药品细节
 
     public BuyRecord()

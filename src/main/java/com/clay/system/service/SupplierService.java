@@ -18,4 +18,6 @@ public interface SupplierService
     void saveSuppliers(List<DrugSuppliersInfo> suppliersInfos);
 
     DrugSuppliersInfo getByCode(int code);
+
+    List<DrugSuppliersInfo> getAll();
 }

@@ -53,4 +53,9 @@ public class SupplierServiceImp implements SupplierService
     {
         return supplierMapper.queryBySupplierCode(code);
     }
+
+    @Override
+    public List<DrugSuppliersInfo> getAll() {
+        return supplierMapper.queryAll();
+    }
 }

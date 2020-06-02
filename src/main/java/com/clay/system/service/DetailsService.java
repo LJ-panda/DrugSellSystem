@@ -22,7 +22,6 @@ public interface DetailsService
     int saveAllDetails(List<PurchaseDetails>detailsList);
 
 
-
     //通过采购吗获取
     List<PurchaseDetails>queryByCode(int code);
 }

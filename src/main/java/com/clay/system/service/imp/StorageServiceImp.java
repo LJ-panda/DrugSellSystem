@@ -44,12 +44,21 @@ public class StorageServiceImp implements DrugStorageService
        });
     }
 
+    /**
+     * 更新库存
+     * @param storage 新增的信息
+     */
     @Override
     public void updateNum(DrugStorage storage)
     {
         storageMapper.update(storage);
     }
 
+    /**
+     * 通过药物code获取数据库中的药物信息
+     * @param code   药物code
+     * @return
+     */
     @Override
     public DrugStorage getByCode(int code)
     {
