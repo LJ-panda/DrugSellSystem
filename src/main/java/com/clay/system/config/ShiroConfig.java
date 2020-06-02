@@ -1,5 +1,6 @@
 package com.clay.system.config;
 
+import com.clay.system.service.PermissionService;
 import com.clay.system.service.UserService;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -28,7 +29,15 @@ public class ShiroConfig
         shiroFilter.setSecurityManager(securityManager);
 
         Map<String, String>filterMap = new LinkedHashMap<>();
-        filterMap.put("/toLogin","anon");
+        //静态资源
+        filterMap.put("/css/**","anon");
+        filterMap.put("/img/**","anon");
+        filterMap.put("/js/**","anon");
+        filterMap.put("/scss/**","anon");
+        filterMap.put("/vendor/**","anon");
+
+        //免认证页面
+
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;
     }
@@ -42,9 +51,9 @@ public class ShiroConfig
     }
 
     @Bean
-    public UserRealm userRealm(UserService userService)
+    public UserRealm userRealm(UserService userService, PermissionService permissionService)
     {
-        return new UserRealm(userService);
+        return new UserRealm(userService,permissionService);
     }
 
 //    @Bean
