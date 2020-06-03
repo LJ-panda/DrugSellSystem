@@ -14,3 +14,13 @@ spring:
       ddl-auto: create
     show-sql: true
     database: h2
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect          #指定数据库引擎为Innodb
+
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        web-allow-others: true
