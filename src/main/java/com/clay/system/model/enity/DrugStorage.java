@@ -2,11 +2,11 @@ package com.clay.system.model.enity;
 
 import com.clay.system.utils.StaticUtils;
 import lombok.Data;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @Author clay
@@ -42,7 +42,7 @@ public class DrugStorage
     private int drugNum;
 
     //新增单价字段，需要从写转换器工具方法
-    @Column(name = "singlePrice",columnDefinition = "float",nullable = false)
+    @Column(name = "singlePrice",columnDefinition = "float COMMENT '采购单价'",nullable = false)
     private float singlePrice;
 
     //添加时间
@@ -67,4 +67,6 @@ public class DrugStorage
     //描述
     @Column(name = "description",columnDefinition = "text")
     private String description;
+
+
 }

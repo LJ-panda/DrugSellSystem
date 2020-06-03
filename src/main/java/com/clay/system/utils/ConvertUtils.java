@@ -46,8 +46,8 @@ public class ConvertUtils
         model.setRecord(record1);
         record.getDrugs()
                 .forEach(a->{
-                    a.setDrugCode(a.hashCode());          //药物代码
                     a.getSuppliersInfo().setSupplierCode(a.getSuppliersInfo().hashCode());  //药物供应商代码
+                    a.setDrugCode(a.hashCode());          //药物代码
                     //添加库存对象
                     model.getDrugStorageList().add(buildDrugStorage(a));
                     //添加所有供应商对象以便后期写库

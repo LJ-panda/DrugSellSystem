@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @Author clay
@@ -52,5 +53,25 @@ public class Drug
     public Drug()
     {
         this.createTime=new Date();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drug drug = (Drug) o;
+        return id == drug.id &&
+                drugCode == drug.drugCode &&
+                drugNum == drug.drugNum &&
+                Float.compare(drug.singlePrice, singlePrice) == 0 &&
+                typeCode == drug.typeCode &&
+                Objects.equals(drugName, drug.drugName) &&
+                Objects.equals(suppliersInfo, drug.suppliersInfo) &&
+                Objects.equals(description, drug.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, drugCode, drugName, drugNum, singlePrice, typeCode, suppliersInfo, description);
     }
 }

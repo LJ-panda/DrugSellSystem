@@ -3,14 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clay.system.mapper.DrugStorageMapper">
     <insert id="insertDrugInfo">
-        INSERT INTO t_drugStorage(drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
-        VALUES(#{drugName},#{drugNum},#{createTime},#{typeCodeId},#{supplier},#{description},#{drugCode})
+        INSERT INTO t_drugStorage(singlePrice,drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
+        VALUES(#{singlePrice},#{drugName},#{drugNum},#{createTime},#{typeCodeId},#{supplier},#{description},#{drugCode})
     </insert>
     <insert id="insertAll" parameterType="com.clay.system.model.enity.DrugStorage">
-        INSERT INTO t_drugStorage(drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
+        INSERT INTO t_drugStorage(singlePrice,drugName,drugNum,createTime,typeCodeId,supplier,description,drugCode)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
+            #{item.singlePrice},
             #{item.drugName},
             #{item.drugNum},
             #{item.createTime},
