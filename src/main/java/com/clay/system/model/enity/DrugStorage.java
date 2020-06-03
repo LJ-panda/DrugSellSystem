@@ -2,6 +2,7 @@ package com.clay.system.model.enity;
 
 import com.clay.system.utils.StaticUtils;
 import lombok.Data;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,6 +40,10 @@ public class DrugStorage
     //数量,件
     @Column(name = "drugNum",columnDefinition = "int default 0",nullable = false)
     private int drugNum;
+
+    //新增单价字段，需要从写转换器工具方法
+    @Column(name = "singlePrice",columnDefinition = "float",nullable = false)
+    private float singlePrice;
 
     //添加时间
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)

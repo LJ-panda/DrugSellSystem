@@ -68,6 +68,7 @@ public class ConvertUtils
     public static DrugStorage buildDrugStorage(Drug drug)
     {
         DrugStorage storage=new DrugStorage();
+        storage.setSinglePrice(drug.getSinglePrice());   //单价配置
         storage.setDescription(drug.getDescription());   //药物描述
         storage.setDrugCode(drug.hashCode());         //药物代码
         storage.setDrugName(drug.getDrugName());      //name
