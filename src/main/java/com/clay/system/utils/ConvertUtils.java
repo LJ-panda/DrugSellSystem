@@ -74,7 +74,7 @@ public class ConvertUtils
         storage.setDrugNum(drug.getDrugNum());            //数量
         storage.setTypeCodeId(drug.getTypeCode());      //类型代码
         storage.setSupplier(drug.getSuppliersInfo().getSupplierCode());      //供应商
-        log.debug("转换的drug对象:{}",storage);
+        log.info("转换的drug对象:{}",storage);
         return storage;
     }
 

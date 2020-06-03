@@ -2,6 +2,7 @@ package com.clay.system.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @Author clay
@@ -14,15 +15,26 @@ import org.springframework.web.bind.annotation.GetMapping;
  * 为前端提供视图
  */
 @Controller
+@RequestMapping(value = "/view")
 public class ViewController
 {
     /**
      * 登陆页面
-     * @return
+     * @return login.ftl
      */
     @GetMapping(value = "/user/toLogin")
     public String toLogin()
     {
-        return "toLogin";
+        return "login";
+    }
+
+    /**
+     * 登陆成功后进入用户主页
+     * @return  index.ftl
+     */
+    @GetMapping(value = "/user/index")
+    public String toIndex()
+    {
+        return "index";
     }
 }

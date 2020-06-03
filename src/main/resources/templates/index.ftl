@@ -8,19 +8,71 @@
   <title>SB Admin 2 - Dashboard</title>
   <#include "common/header.ftl"/>
 
-  <!--
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <script src="${springMacroRequestContext.contextPath}/js/jquery-3.4.1.js"></script>
 
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <script>
+    function postRecord()
+    {
+      let dataModel={
+        tip:"备注信息",
+        //purchaseCode:"采购码，后端会进行hash",
+        //time:"后端会生成",
+        drugs:[
+          {
+            //id:"药物id",
+            drugName:"药物名",
+            drugNum:10,
+            singlePrice:15,
+            typeCode:1,
+            description:"描述",
+            suppliersInfo:{
+              name:"供应商01",
+              brand:"商标01",
+              phoneNum:"1234567",
+              email:"254565444@qq.com",
+              address:"四川成都"
+              //supplierCode:""
+            }
+          },
+          {
+            //id:"药物id2",
+            drugName:"药物名2",
+            drugNum:10,
+            singlePrice:15,
+            typeCode:1,
+            description:"描述2",
+            suppliersInfo:{
+              name:"供应商02",
+              brand:"商标02",
+              phoneNum:"12345678",
+              email:"254565444@qq.com",
+              address:"四川成都"
+              //supplierCode:""
+            }
+          }
+        ]
+      };
 
+      console.log("data:"+JSON.stringify(dataModel));
 
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  -->
+      let  postUrl="${springMacroRequestContext.contextPath}/api/record/add";
+      /*
+      $.post(postUrl,JSON.stringify(dataModel),function (data){
+        console.log("响应信息："+data);
+      });
+       */
+      $.ajax({
+        url:postUrl,
+        type:"post",
+        data:JSON.stringify(dataModel),      // 对象数组
+        contentType: "application/json;charset=UTF-8",
+        dataType:"json",
+        success:function (data) {
+          console.log("响应："+data);
+        }
+      });
+    }
+  </script>
 </head>
 
 <body id="page-top">
@@ -49,6 +101,8 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
+            <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
           </div>
 
           <!-- Content Row -->

@@ -38,7 +38,7 @@ public class PurchaseRecord
     private Date time;
 
     //操作者
-    @Column(name = "operationUser",columnDefinition = "varchar(55)",nullable = false)
+    @Column(name = "operationUser",columnDefinition = "varchar(55)")
     private String operationUser;
 
     //采购码，用于本次的整个采购对象的hash,和详情表关联

@@ -29,7 +29,9 @@ public class ShiroConfig
     {
         ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
-
+        //其它
+        shiroFilter.setLoginUrl("/view/user/toLogin");
+        shiroFilter.setUnauthorizedUrl("/view/user/toLogin");
         Map<String, String>filterMap = new LinkedHashMap<>();
         //静态资源
         filterMap.put("/css/**","anon");
@@ -38,10 +40,26 @@ public class ShiroConfig
         filterMap.put("/scss/**","anon");
         filterMap.put("/vendor/**","anon");
 
-        //免认证页面
+        //免认证的请求
+        filterMap.put("/view/user/toLogin","anon");
+        filterMap.put("/api/user/login","anon");
+
+        //需要认证的url
+        filterMap.put("/**","authc");
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;
+
+//        ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
+//        shiroFilter.setSecurityManager(securityManager);
+//        Map<String,String>filterMap=new LinkedHashMap<>();
+//        filterMap.put("/api/user/login","anon");
+//        filterMap.put("/view/user/toLogin","anon");
+//        //暂时省略部分
+//        filterMap.put("/*","authc");
+//        shiroFilter.setFilterChainDefinitionMap(filterMap);
+//        shiroFilter.setUnauthorizedUrl("/view/user/toLogin");
+//        return shiroFilter;
     }
 
     @Bean
@@ -55,7 +73,11 @@ public class ShiroConfig
     @Bean
     public UserRealm userRealm(UserService userService, PermissionService permissionService)
     {
-        return new UserRealm(userService,permissionService);
+        UserRealm userRealm=new UserRealm(userService,permissionService);
+        userRealm.setCachingEnabled(true);
+        userRealm.setAuthorizationCachingEnabled(true);
+        userRealm.setAuthenticationCachingEnabled(true);
+        return userRealm;
     }
 
 //    @Bean

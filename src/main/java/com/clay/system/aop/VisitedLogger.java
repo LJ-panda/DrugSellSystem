@@ -48,7 +48,7 @@ public class VisitedLogger extends BaseAop
         String description=getDescription(point.getTarget().getClass(),
                 (MethodSignature) point.getSignature());
 
-        log.debug("接口方法 {}\t 描述为 {} 被请求，参数为 {}",
+        log.info("接口方法 {}\t 描述为 {} 被请求，参数为 {}",
                 methodName, description, args);
 
         Object obj=point.proceed(args);

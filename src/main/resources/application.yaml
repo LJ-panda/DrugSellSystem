@@ -8,9 +8,9 @@ spring:
 
     ## freemarker配置
   freemarker:
-    template-loader-path: classpath:/templates/
+    template-loader-path: classpath:/templates
     suffix: .ftl
-    content-type: text/html
+    content-type: text/html;charset=UTF-8
     charset: UTF-8
     ##redis配置，根据shiro是否使用redis确定，暂时没用
 #  redis:

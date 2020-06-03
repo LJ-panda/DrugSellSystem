@@ -4,12 +4,12 @@
 <mapper namespace="com.clay.system.mapper.DetailsMapper">
 
     <insert id="insertDetails" parameterType="com.clay.system.model.enity.PurchaseDetails">
-        INSERT INTO t_purchaseDetails(purchaseCode,drugId,drugNum,singlePrice,totalPrice)
+        INSERT INTO t_purchaseDetails(purchaseCode,drugCode,drugNum,singlePrice,totalPrice)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (
             #{item.purchaseCode},
-            #{item.drugId},
+            #{item.drugCode},
             #{item.drugNum},
             #{item.singlePrice},
             #{item.totalPrice}

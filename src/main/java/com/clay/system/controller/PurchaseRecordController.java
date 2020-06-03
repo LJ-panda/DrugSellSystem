@@ -46,7 +46,7 @@ public class PurchaseRecordController
     public SystemResponse add(@RequestBody
                               @Validated BuyRecord record)
     {
-        log.debug("新增采购记录，data：{}",record);
+        log.info("新增采购记录，data：{}",record);
 
         recordService.saveRecord(record);
         return new SystemResponse()
