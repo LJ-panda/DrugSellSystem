@@ -2,6 +2,7 @@ package com.clay.system.model.enity;
 
 import com.clay.system.utils.StaticUtils;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "t_sellRecord")
+@SuppressWarnings("all")
 public class SellRecord
 {
     @Id
@@ -33,7 +35,7 @@ public class SellRecord
     @Column(name = "createTime",columnDefinition = "timestamp",nullable = false)
     private Date createTime;
 
-    @Column(name = "operationUser",columnDefinition = "varchar(50)")
+    @Column(name = "operationUser",columnDefinition = "varchar(50) default '无名'")
     private String operationUser;
 
     @Column(name = "totalPrice",columnDefinition = "float",nullable = false)

@@ -7,7 +7,7 @@
 
   <title>SB Admin 2 - 404</title>
 
-  <#include "common/header.ftl"/>
+  <#include "../common/header.ftl"/>
   <!--
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +32,7 @@
     <!-- Sidebar -->
 
     <!-- End of Sidebar -->
-    <#include "common/sidebar.ftl"/>
+    <#include "../common/sidebar.ftl"/>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -40,7 +40,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <#include "common/nav.ftl"/>
+        <#include "../common/nav.ftl"/>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -51,7 +51,7 @@
             <div class="error mx-auto" data-text="404">404</div>
             <p class="lead text-gray-800 mb-5">Page Not Found</p>
             <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-            <a href="index.ftl">&larr; Back to Dashboard</a>
+            <a href="../index.ftl">&larr; Back to Dashboard</a>
           </div>
 
         </div>
@@ -61,7 +61,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <#include "common/footer.ftl"/>
+      <#include "../common/footer.ftl"/>
       <!-- End of Footer -->
 
     </div>
@@ -76,10 +76,10 @@
   </a>
 
   <!-- Logout Modal-->
-  <#include "common/buttonLogoutModal.ftl"/>
+  <#include "../common/buttonLogoutModal.ftl"/>
 
   <!-- Bootstrap core JavaScript-->
-  <#include "common/buttonsrc.ftl"/>
+  <#include "../common/buttonsrc.ftl"/>
   <!--
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

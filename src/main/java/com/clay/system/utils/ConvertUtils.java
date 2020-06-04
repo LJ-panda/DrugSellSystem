@@ -1,13 +1,7 @@
 package com.clay.system.utils;
 
-import com.clay.system.model.enity.DrugStorage;
-import com.clay.system.model.enity.PurchaseDetails;
-import com.clay.system.model.enity.PurchaseRecord;
-import com.clay.system.model.enity.User;
-import com.clay.system.model.vo.BuyRecord;
-import com.clay.system.model.vo.Drug;
-import com.clay.system.model.vo.PurchaseDataModel;
-import com.clay.system.model.vo.VoUser;
+import com.clay.system.model.enity.*;
+import com.clay.system.model.vo.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
@@ -103,5 +97,25 @@ public class ConvertUtils
         u.setStatus(user.getStatus()==1||user.getStatus()==-1?user.getStatus():1);
         u.setUserName(user.getUserName());
         return u;
+    }
+
+
+    /**
+     * 根据接收的vo对象创建record
+     * 以及生成code
+     * @param order
+     * @return
+     */
+    public static SellRecord buildRecordByVo(VoOrder order)
+    {
+        SellRecord sellRecord=new SellRecord();
+        sellRecord.setDetailsList(order.getDetails());
+        sellRecord.setOrderCode(sellRecord.hashCode());
+        order.getDetails()
+                .forEach(item->{
+                    sellRecord.setTotalPrice(sellRecord.getTotalPrice()+item.getDrugPrice()*item.getDrugNum());
+                    item.setOrderCode(sellRecord.getOrderCode());
+                });
+        return sellRecord;
     }
 }

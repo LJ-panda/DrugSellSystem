@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.SellRecordMapper">
+
+    <insert id="insertRecord" parameterType="com.clay.system.model.enity.SellRecord">
+        INSERT INTO t_sellRecord(createTime,operationUser,totalPrice,orderCode)
+        VALUES(#{createTime},#{operationUser},#{totalPrice},#{orderCode})
+    </insert>
+    <select id="queryAll" resultType="com.clay.system.model.enity.SellRecord">
+        SELECT * FROM t_sellRecord
+    </select>
+</mapper>

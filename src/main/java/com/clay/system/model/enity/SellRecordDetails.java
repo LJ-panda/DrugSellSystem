@@ -3,6 +3,8 @@ package com.clay.system.model.enity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 /**
  * @Author clay
@@ -16,6 +18,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "t_sellDetails")
+@SuppressWarnings("all")
 public class SellRecordDetails
 {
     @Id
@@ -26,15 +29,17 @@ public class SellRecordDetails
     @Column(name = "orderCode",columnDefinition = "int",nullable = false)
     private int orderCode;
 
+    @NotBlank(message = "必须有代码")
     //药物代码
     @Column(name = "drugCode",columnDefinition = "int",nullable = false)
     private int drugCode;
 
+    @Positive(message = "数量必须大于0")
     //药物数量
     @Column(name = "drugNum",columnDefinition = "tinyint",nullable = false)
     private int drugNum;
 
-    //该药品的总价
+    //该药品的单价
     @Column(name = "drugPrice",columnDefinition = "float",nullable = false)
     private float drugPrice;
 

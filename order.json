@@ -1,0 +1,7 @@
+{
+  "totalPrice": 15,
+  "details": [
+    {"drugCode": "code","drugNum": "数量","drugPrice": "price"},
+    {"drugCode": "code02","drugNum": "数量2","drugPrice": "price"}
+  ]
+}
