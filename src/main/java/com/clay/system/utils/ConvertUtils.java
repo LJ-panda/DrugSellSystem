@@ -47,7 +47,7 @@ public class ConvertUtils
         record.getDrugs()
                 .forEach(a->{
                     a.getSuppliersInfo().setSupplierCode(a.getSuppliersInfo().hashCode());  //药物供应商代码
-                    a.setDrugCode(a.hashCode());          //药物代码
+                    a.setDrugCode(a.hashCode());          //药物代码，注意此处是vo中的Drug对象
                     //添加库存对象
                     model.getDrugStorageList().add(buildDrugStorage(a));
                     //添加所有供应商对象以便后期写库
@@ -65,17 +65,26 @@ public class ConvertUtils
         return model;
     }
 
+
+    /**
+     * 将前端传递的数据解析出来的vo对象
+     * 转换成DrugStorage对象
+     * Drug：{@link Drug}
+     * DrugStorage：{@link DrugStorage}
+     * @param drug  vo
+     * @return
+     */
     public static DrugStorage buildDrugStorage(Drug drug)
     {
         DrugStorage storage=new DrugStorage();
         storage.setSinglePrice(drug.getSinglePrice());   //单价配置
         storage.setDescription(drug.getDescription());   //药物描述
-        storage.setDrugCode(drug.hashCode());         //药物代码
+        storage.setDrugCode(drug.hashCode());         //药物代码，使用的是Drug对象的hashCode
         storage.setDrugName(drug.getDrugName());      //name
         storage.setDrugNum(drug.getDrugNum());            //数量
         storage.setTypeCodeId(drug.getTypeCode());      //类型代码
         storage.setSupplier(drug.getSuppliersInfo().getSupplierCode());      //供应商
-        log.info("转换的drug对象:{}",storage);
+        log.debug("转换的drug对象:{}",storage);
         return storage;
     }
 

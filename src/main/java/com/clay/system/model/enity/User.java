@@ -23,19 +23,19 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "userName",columnDefinition = "varchar(15)")
+    @Column(name = "userName",columnDefinition = "varchar(15) COMMENT '用户名'")
     private String userName;
 
-    @Column(name = "email",columnDefinition = "varchar(45)",nullable = false)
+    @Column(name = "email",columnDefinition = "varchar(45) COMMENT '邮箱，登陆凭据'",nullable = false)
     private String email;
 
-    @Column(name = "password",columnDefinition = "varchar(20)",nullable = false)
+    @Column(name = "password",columnDefinition = "varchar(20) COMMENT '密码'",nullable = false)
     private String password;
 
     //1 正常,-1 禁用
-    @Column(name = "status",columnDefinition = "tinyint default 1",nullable = false)
+    @Column(name = "status",columnDefinition = "tinyint default 1 COMMENT '用户状态'",nullable = false)
     private int status;
 
-    @Column(name = "description",columnDefinition = "text")
+    @Column(name = "description",columnDefinition = "text COMMENT '描述性文本'")
     private String description;
 }

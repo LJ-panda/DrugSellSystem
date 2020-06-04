@@ -25,21 +25,21 @@ public class PurchaseDetails
     private int id;
 
     //采购码,用于关联采购表
-    @Column(name = "purchaseCode",columnDefinition = "int",nullable = false)
+    @Column(name = "purchaseCode",columnDefinition = "int COMMENT '采购码'",nullable = false)
     private int purchaseCode;
 
     //药品代码
-    @Column(name = "drugCode",columnDefinition = "int",nullable = false)
+    @Column(name = "drugCode",columnDefinition = "int COMMENT '药物代码'",nullable = false)
     private int drugCode;
 
     //采购量
-    @Column(name = "drugNum",columnDefinition = "int",nullable = false)
+    @Column(name = "drugNum",columnDefinition = "int COMMENT '本次采购数'",nullable = false)
     private int drugNum;
 
     //单价
-    @Column(name = "singlePrice",columnDefinition = "float",nullable = false)
+    @Column(name = "singlePrice",columnDefinition = "float COMMENT '采购单价'",nullable = false)
     private float singlePrice;
 
-    @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
+    @Column(name = "totalPrice",columnDefinition = "float COMMENT '本批药物采购总价'",nullable = false)
     private float totalPrice;
 }

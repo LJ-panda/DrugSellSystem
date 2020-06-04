@@ -31,14 +31,14 @@ public class DrugStorage
     private int id;
 
     //药品代码
-    @Column(name = "drugCode",columnDefinition = "int",nullable = false)
+    @Column(name = "drugCode",columnDefinition = "int COMMENT '根据vo对象生成的hash'",nullable = false)
     private int drugCode;
     //药物名
-    @Column(name = "drugName",columnDefinition = "varchar(88)",nullable = false)
+    @Column(name = "drugName",columnDefinition = "varchar(88) COMMENT '药物名字'",nullable = false)
     private String drugName;
 
     //数量,件
-    @Column(name = "drugNum",columnDefinition = "int default 0",nullable = false)
+    @Column(name = "drugNum",columnDefinition = "int default 0 COMMENT '目前库存数量'",nullable = false)
     private int drugNum;
 
     //新增单价字段，需要从写转换器工具方法
@@ -47,7 +47,7 @@ public class DrugStorage
 
     //添加时间
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
-    @Column(name = "createTime",columnDefinition = "timestamp",nullable = false)
+    @Column(name = "createTime",columnDefinition = "timestamp COMMENT '添加到库的时间'",nullable = false)
     private Date createTime;
 
     //新增库存等的时间
@@ -57,15 +57,15 @@ public class DrugStorage
     private Date updatedTime;
 
     //类型码的ID
-    @Column(name = "typeCodeId",columnDefinition = "tinyint",nullable = false)
+    @Column(name = "typeCodeId",columnDefinition = "tinyint COMMENT '药物类别表中的代码'",nullable = false)
     private int typeCodeId;
 
     //供应商代码
-    @Column(name = "supplier",columnDefinition = "int",nullable = false)
+    @Column(name = "supplier",columnDefinition = "int COMMENT '供应商代码'",nullable = false)
     private int supplier;
 
     //描述
-    @Column(name = "description",columnDefinition = "text")
+    @Column(name = "description",columnDefinition = "text COMMENT '药物简介，描述性字段'")
     private String description;
 
 

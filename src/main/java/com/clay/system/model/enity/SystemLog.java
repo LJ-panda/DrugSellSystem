@@ -26,14 +26,14 @@ public class SystemLog
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "logType",columnDefinition = "tinyint default 0")
+    @Column(name = "logType",columnDefinition = "tinyint default 0 COMMENT '日志类型代码'")
     private int logType;
 
-    @Column(name = "logBody",columnDefinition = "text",nullable = false)
+    @Column(name = "logBody",columnDefinition = "text COMMENT '日志体'",nullable = false)
     private String logBody;
 
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
-    @Column(name = "createTime",columnDefinition = "timestamp",nullable = false)
+    @Column(name = "createTime",columnDefinition = "timestamp COMMENT '日志时间'",nullable = false)
     private Date createTime;
 
     public SystemLog()
