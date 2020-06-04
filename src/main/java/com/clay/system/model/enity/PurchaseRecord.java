@@ -29,23 +29,23 @@ public class PurchaseRecord
     private int id;
 
     //小记录，用于描述本次采购记录
-    @Column(name = "tip",columnDefinition = "text COMMENT '采购小记'")
+    @Column(name = "tip",columnDefinition = "text")
     private String tip;
 
     //采购时间
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
-    @Column(name = "time",columnDefinition = "timestamp COMMENT '时间'")
+    @Column(name = "time",columnDefinition = "timestamp")
     private Date time;
 
     //操作者
-    @Column(name = "operationUser",columnDefinition = "varchar(55) COMMENT '采购人'")
+    @Column(name = "operationUser",columnDefinition = "varchar(55)")
     private String operationUser;
 
     //采购码，用于本次的整个采购对象的hash,和详情表关联
-    @Column(name = "purchaseCode",columnDefinition = "int COMMENT '采购码'",nullable = false)
+    @Column(name = "purchaseCode",columnDefinition = "int",nullable = false)
     private int purchaseCode;
 
-    @Column(name = "totalPrice",columnDefinition = "float COMMENT '本批次所有药物总价'",nullable = false)
+    @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
     private float totalPrice;
 
 }

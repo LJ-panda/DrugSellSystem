@@ -32,12 +32,12 @@ public class DrugTypeCode
 
     @NotBlank(message = "类型名不可为空")
     //类型名
-    @Column(name = "typeName",columnDefinition = "varchar(66) COMMENT '类型名字'",nullable = false)
+    @Column(name = "typeName",columnDefinition = "varchar(66)",nullable = false)
     private String typeName;
 
 
     @Size(max = 150,message = "描述请控制在150字以内")
-    @Column(name = "description",columnDefinition = "text COMMENT '关于类型的描述'")
+    @Column(name = "description",columnDefinition = "text")
     private String description;
 
 }

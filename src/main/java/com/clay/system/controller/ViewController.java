@@ -37,4 +37,21 @@ public class ViewController
     {
         return "index";
     }
+
+    /**
+     * 用于前端获取详情表格部分
+     * 没毛病
+     * @return
+     */
+    @GetMapping(value = "/part/details")
+    public String details()
+    {
+        return "common/details";
+    }
+
+    @GetMapping(value = "/test")
+    public String test()
+    {
+        return "Record02";
+    }
 }

@@ -39,7 +39,7 @@ public class TypeCodeController
      * 需要权限：typeCode:query
      * @return
      */
-    @RequiresPermissions("typeCode:query")
+    //@RequiresPermissions("typeCode:query")
     @Description(description = "获取所有类别代码")
     @GetMapping(value = "/query")
     public SystemResponse queryAll()

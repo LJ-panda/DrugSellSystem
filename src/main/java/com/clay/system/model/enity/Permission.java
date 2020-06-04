@@ -24,11 +24,11 @@ public class Permission
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name COMMENT '权限名'",nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
 
-    @Column(name = "description COMMENT '描述'",columnDefinition = "text")
+    @Column(name = "description",columnDefinition = "text")
     private String description;
 
 

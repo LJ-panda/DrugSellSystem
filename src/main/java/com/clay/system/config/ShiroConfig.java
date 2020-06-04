@@ -44,8 +44,12 @@ public class ShiroConfig
         filterMap.put("/view/user/toLogin","anon");
         filterMap.put("/api/user/login","anon");
 
+        filterMap.put("/view/part/details","anon");
+        filterMap.put("/view/test","anon");
         //需要认证的url
-        filterMap.put("/**","authc");
+        //filterMap.put("/**","authc");
+
+        filterMap.put("/**","anon");
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;
