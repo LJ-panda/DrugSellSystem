@@ -24,4 +24,6 @@ public interface TypeCodeMapper
     int delById(int id);
 
     int updateById(DrugTypeCode typeCode);
+
+    DrugTypeCode queryById(int id);
 }

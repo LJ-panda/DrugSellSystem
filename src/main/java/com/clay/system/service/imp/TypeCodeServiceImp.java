@@ -47,4 +47,9 @@ public class TypeCodeServiceImp implements TypeCodeService
     public int updateById(DrugTypeCode typeCode) {
         return typeCodeMapper.updateById(typeCode);
     }
+
+    @Override
+    public DrugTypeCode getByCodeId(int id) {
+        return typeCodeMapper.queryById(id);
+    }
 }

@@ -67,4 +67,9 @@ public class StorageServiceImp implements DrugStorageService
     {
         return storageMapper.queryByCode(code);
     }
+
+    @Override
+    public List<DrugStorage> getAll() {
+        return storageMapper.queryAll();
+    }
 }

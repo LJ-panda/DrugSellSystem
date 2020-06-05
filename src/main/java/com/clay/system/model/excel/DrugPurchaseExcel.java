@@ -18,7 +18,7 @@ import java.util.Date;
  * 药物采购报表详情
  */
 @Data
-@OnceAbsoluteMerge(firstRowIndex = 1,lastRowIndex = 1,firstColumnIndex = 0,lastColumnIndex = 4)
+//@OnceAbsoluteMerge(firstRowIndex = 1,lastRowIndex = 1,firstColumnIndex = 0,lastColumnIndex = 4)
 public class DrugPurchaseExcel
 {
     @ExcelProperty(value = "采购记录ID")

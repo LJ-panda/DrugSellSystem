@@ -18,4 +18,6 @@ public interface DrugStorageService
     void updateNum(DrugStorage storage);  //数据库中有完全相同的库存时进行更新
 
     DrugStorage getByCode(int code);
+
+    List<DrugStorage> getAll();
 }

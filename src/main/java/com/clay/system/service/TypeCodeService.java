@@ -22,4 +22,6 @@ public interface TypeCodeService
     int delById(int id);
 
     int updateById(DrugTypeCode typeCode);
+
+    DrugTypeCode getByCodeId(int id);
 }

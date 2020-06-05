@@ -62,6 +62,17 @@ INSERT INTO t_permission(name,description)VALUES('order:queryAll','nothing');
 
 
 /**
+ * Excel 报表权限
+ */
+INSERT INTO t_permission(name,description)VALUES('excel:query:suppliers','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:sellRecord','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:purchaseRecord','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:typeCode','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:drugStorage','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:log','nothing');
+
+
+/**
  * 初始化用户数据
  */
 

@@ -16,4 +16,7 @@
     <select id="queryAllTypeCode" resultType="com.clay.system.model.enity.DrugTypeCode">
         SELECT * FROM t_drugTypeCode
     </select>
+    <select id="queryById" resultType="com.clay.system.model.enity.DrugTypeCode">
+        SELECT * FROM t_drugTypeCode WHERE id = #{id}
+    </select>
 </mapper>
