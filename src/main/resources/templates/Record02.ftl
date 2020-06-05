@@ -26,12 +26,22 @@
 			 * 主要用于点击添加药物信息
 			 */
 
+			var detailTable=null;   //缓存详情表的部分h5数据
+
 			function add()
 			{
-				let url="${springMacroRequestContext.contextPath}/view/part/details";
-				$.get(url,function(data){
-					$("#abc666").append(data);
-				})
+				if (detailTable==null)
+				{
+					let url="${springMacroRequestContext.contextPath}/view/part/details";
+					$.get(url,function(data){
+						detailTable=data;
+						$("#abc666").append(data);
+					});
+				}
+				else
+				{
+					$("#abc666").append(detailTable);
+				}
 			}
 
 			var code=null;   //缓存后端传递的typecode
