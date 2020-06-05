@@ -46,7 +46,7 @@ public class ViewController
     @GetMapping(value = "/part/details")
     public String details()
     {
-        return "common/details";
+        return "part/details";
     }
 
     @GetMapping(value = "/test")

@@ -33,6 +33,7 @@ public class ConvertUtils
 
         PurchaseRecord record1=new PurchaseRecord();
         int code=record.hashCode();
+        record1.setOperationUser(record.getOperationUser());
         record1.setTotalPrice(0);
         record1.setTip(record.getTip());
         record1.setPurchaseCode(code);

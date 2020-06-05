@@ -40,7 +40,7 @@ public class PurchaseRecordController
      * @param record 记录
      * @return
      */
-    @RequiresPermissions("purchaseRecord:insert")
+    //@RequiresPermissions("purchaseRecord:insert")
     @Description(description = "新增采购记录")
     @PostMapping(value = "/add")
     public SystemResponse add(@RequestBody

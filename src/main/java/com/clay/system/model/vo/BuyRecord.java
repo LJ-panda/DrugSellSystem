@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,9 @@ public class BuyRecord
 
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
     private Date time;
+
+    @NotBlank(message = "操作人不可为空")
+    private String operationUser;
 
     @Valid
     private List<Drug>drugs;   //采购的药品细节

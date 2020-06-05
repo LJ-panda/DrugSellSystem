@@ -2,7 +2,7 @@
 <#--
 通过class属性来确定找出字段，避免多id的冲突
 -->
-<table class="table table-striped" border="3px">
+<table class="table table-striped drug-table" border="3px">
     <tr>
         <td>药物名称：</td>
         <td colspan="2"><input type="text" name="drugName" class="drugName" required="required"/></td>
@@ -30,7 +30,7 @@
 
     <tr>
         <td>采购描述：</td>
-        <td colspan="2"><input type="text" name="description" id="description"/></td>
+        <td colspan="2"><input type="text" name="description" class="description"  required="required"/></td>
     </tr>
 
     <tr class="supplierInfo">
@@ -38,26 +38,26 @@
         <td colspan="2">
     <tr>
         <td>名称：</td>
-        <td><input type="text" class="supplier_name" name="name"/></td>
+        <td><input type="text" class="supplier_name" name="name"   required="required"/></td>
     </tr>
     <tr>
         <td>商标：</td>
-        <td><input type="text" class="supplier_brand" name="brand"/></td>
+        <td><input type="text" class="supplier_brand" name="brand"   required="required"/></td>
     </tr>
 
     <tr>
         <td>电话：</td>
-        <td><input type="tel" class="supplier_phoneNum" name="phoneNum"/></td>
+        <td><input type="tel" class="supplier_phoneNum" name="phoneNum"   required="required"/></td>
     </tr>
 
     <tr>
         <td>邮箱：</td>
-        <td><input type="email" class="supplier_email" name="email"/></td>
+        <td><input type="email" class="supplier_email" name="email"  required="required"/></td>
     </tr>
 
     <tr>
         <td>地址：</td>
-        <td><input type="text" class="supplier_adress" name="adress"/></td>
+        <td><input type="text" class="supplier_address" name="adress"  required="required"/></td>
     </tr>
         </td>
     </tr>

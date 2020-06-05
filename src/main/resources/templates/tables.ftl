@@ -33,7 +33,7 @@
         <div class="container-fluid">
 
           <!--除了下面这句，其余已经是公共部分-->
-          <#include "common/pageTable.ftl"/>
+          <#include "part/pageTable.ftl"/>
 
         </div>
         <!-- /.container-fluid -->
