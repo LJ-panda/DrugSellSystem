@@ -205,13 +205,18 @@
                 {
                     console.log("show节点：data-table-mine-"+elVal.toString());
                     $("."+dataTableClassSet[i].toString()).show();
-                    //getDataByType(elVal);
+                    $("."+dataTableClassSet[i].toString()).attr("id","dataTable");
+
+                    //清空旧表数据，自动刷新
+                    $(".data-table-mine-"+elVal+" tbody").empty();
+                    getDataByType(elVal);
                     flag=true;
                 }
                 else
                 {
                     console.log("hide节点：data-table-mine-"+elVal.toString());
                     $("."+dataTableClassSet[i].toString()).hide();
+                    $("."+dataTableClassSet[i].toString()).attr("id","dataTable-none");
                 }
             }
 
