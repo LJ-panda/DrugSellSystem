@@ -114,7 +114,9 @@ public class ShiroConfig
      * @param securityManager
      * @return
      */
-    @Bean
+
+    //暂时关闭权限
+    //@Bean
     public AuthorizationAttributeSourceAdvisor advisor(SecurityManager securityManager)
     {
         AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();

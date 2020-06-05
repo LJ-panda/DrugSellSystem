@@ -5,19 +5,15 @@
 		<title></title>
 		<meta charset="utf-8">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<!-- 新 Bootstrap4 核心 CSS 文件 -->
+
 		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-		 
-		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
 		<script src="${springMacroRequestContext.contextPath}/js/jquery-3.4.1.js"></script>
-		 
-		<!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+
 		<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-		 
-		<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-			
+
 		<script>
 
 			/*
@@ -144,7 +140,7 @@
 					let supplier_address=els[i].getElementsByClassName("supplier_address")[0].value;
 
 					if (!(drugName.length!==0&&drugNum!==0&&singlePrice!==0&&typeCode.length!==0&&description.length!==0&&
-					supplier_name.length!==0&&supplier_brand.length!==0&&supplier_phoneNum.length!==0&&supplier_email.length!==0&&supplier_address.length!==0))
+							supplier_name.length!==0&&supplier_brand.length!==0&&supplier_phoneNum.length!==0&&supplier_email.length!==0&&supplier_address.length!==0))
 					{
 						alert("<h2 class='alert'>请按要求填写完表格的所有数据</h2>");
 						return null;

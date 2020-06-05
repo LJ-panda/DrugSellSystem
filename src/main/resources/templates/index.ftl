@@ -10,67 +10,47 @@
 
   <script src="${springMacroRequestContext.contextPath}/js/jquery-3.4.1.js"></script>
 
+
   <script>
-    function postRecord()
+    function clickHind()
     {
-      let dataModel={
-        tip:"备注信息",
-        //purchaseCode:"采购码，后端会进行hash",
-        //time:"后端会生成",
-        drugs:[
-          {
-            //id:"药物id",
-            drugName:"药物名",
-            drugNum:10,
-            singlePrice:15,
-            typeCode:1,
-            description:"描述",
-            suppliersInfo:{
-              name:"供应商01",
-              brand:"商标01",
-              phoneNum:"1234567",
-              email:"254565444@qq.com",
-              address:"四川成都"
-              //supplierCode:""
-            }
-          },
-          {
-            //id:"药物id2",
-            drugName:"药物名2",
-            drugNum:10,
-            singlePrice:15,
-            typeCode:1,
-            description:"描述2",
-            suppliersInfo:{
-              name:"供应商02",
-              brand:"商标02",
-              phoneNum:"12345678",
-              email:"254565444@qq.com",
-              address:"四川成都"
-              //supplierCode:""
-            }
-          }
-        ]
-      };
+      $("#part-record-div").toggle();
+    }
 
-      console.log("data:"+JSON.stringify(dataModel));
-
-      let  postUrl="${springMacroRequestContext.contextPath}/api/record/add";
-      $.ajax({
-        url:postUrl,
-        type:"post",
-        data:JSON.stringify(dataModel),      // 对象数组
-        contentType: "application/json;charset=UTF-8",
-        dataType:"json",
-        success:function (data) {
-          console.log("响应："+data);
+    var hashSet=[];
+    function hashChageFun()
+    {
+      let hash=window.location.hash.toString();
+      hash=hash.substr(1,hash.length-1);
+      let baseUrl="${springMacroRequestContext.contextPath}/view/part/";
+      let flag=false;
+      for (i=0;i<hashSet.length;i++)
+      {
+        if (hashSet[i].split("@")[0]===hash)
+        {
+          $("#"+hashSet[i].split("@")[1]).show();
+          flag=true;
         }
-      });
+        else
+        {
+          $("#"+hashSet[i].split("@")[1]).hide();
+        }
+      }
+      if (!flag)
+      {
+        console.log("请求Url："+baseUrl+hash);
+        $.get(baseUrl+hash,function (data) {
+          $("#father-div").append(data);
+          hashSet.push(hash+"@"+data.substr(data.indexOf("id=\"")+4,data.indexOf(" class")-10).trim());
+          console.log("id列表："+JSON.stringify(hashSet));
+        });
+      }
+
     }
   </script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onhashchange="hashChageFun()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -90,17 +70,18 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid" id="father-div">
 
+          <#--测试数据格式的button-->
+          <#--
           <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
+          -->
+          <button onclick="clickHind()" class="btn-primary btn btn-block">点击隐藏</button>
           <!-- Page Heading -->
-          <!--
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 
 
-          </div>
+          <#--
+          <#include "part/record.ftl"/>
           -->
 
           <!-- Content Row -->

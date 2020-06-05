@@ -1,5 +1,6 @@
 package com.clay.system.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 视图控制器
  * 为前端提供视图
  */
+@Slf4j
 @Controller
 @RequestMapping(value = "/view")
 public class ViewController
@@ -46,12 +48,25 @@ public class ViewController
     @GetMapping(value = "/part/details")
     public String details()
     {
+        log.info("details请求");
         return "part/details";
+    }
+
+    @GetMapping(value = "/part/record")
+    public String record()
+    {
+        return "part/record";
     }
 
     @GetMapping(value = "/test")
     public String test()
     {
         return "Record02";
+    }
+
+    @GetMapping(value = "/part/table")
+    public String table()
+    {
+        return "part/pageTable";
     }
 }
