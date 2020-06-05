@@ -56,11 +56,6 @@
       console.log("data:"+JSON.stringify(dataModel));
 
       let  postUrl="${springMacroRequestContext.contextPath}/api/record/add";
-      /*
-      $.post(postUrl,JSON.stringify(dataModel),function (data){
-        console.log("响应信息："+data);
-      });
-       */
       $.ajax({
         url:postUrl,
         type:"post",
@@ -97,13 +92,16 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+          <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
           <!-- Page Heading -->
+          <!--
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 
-            <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
+
           </div>
+          -->
 
           <!-- Content Row -->
 

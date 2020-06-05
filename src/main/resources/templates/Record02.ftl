@@ -35,12 +35,12 @@
 					let url="${springMacroRequestContext.contextPath}/view/part/details";
 					$.get(url,function(data){
 						detailTable=data;
-						$("#abc666").append(data);
+						$("#items").append(data);
 					});
 				}
 				else
 				{
-					$("#abc666").append(detailTable);
+					$("#items").append(detailTable);
 				}
 			}
 
@@ -113,7 +113,7 @@
 				
 				<tr>
 					<td align="center" rowspan="*">药品信息</td>
-					<td id="abc666">
+					<td id="items">
 						<!--
 						用于添加的这一段，直接通过ajax去后端获取该段代码的渲染值，然后赋值给js变量
 						-->
@@ -128,31 +128,3 @@
 		
 	</body>
 </html>
-
-<!--
-
-
-    <tr>
-        <td>名称：</td>
-        <td><input type="text" id="name" name="name"/></td>
-    </tr>
-    <tr>
-        <td>商标：</td>
-        <td><input type="text" id="brand" name="brand"/></td>
-    </tr>
-
-    <tr>
-        <td>电话：</td>
-        <td><input type="tel" id="phoneNum" name="phoneNum"/></td>
-    </tr>
-
-    <tr>
-        <td>邮箱：</td>
-        <td><input type="email" id="email" name="email"/></td>
-    </tr>
-
-    <tr>
-        <td>地址：</td>
-        <td><input type="text" id="adress" name="adress"/></td>
-    </tr>
--->
