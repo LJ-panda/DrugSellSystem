@@ -29,12 +29,14 @@ public class SystemLog
     @Column(name = "logType",columnDefinition = "tinyint default 0")
     private int logType;
 
-    @Column(name = "logBody",columnDefinition = "text",nullable = false)
-    private String logBody;
+
 
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
     @Column(name = "createTime",columnDefinition = "timestamp",nullable = false)
     private Date createTime;
+
+    @Column(name = "logBody",columnDefinition = "text",nullable = false)
+    private String logBody;
 
     public SystemLog()
     {

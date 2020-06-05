@@ -28,10 +28,6 @@ public class PurchaseRecord
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //小记录，用于描述本次采购记录
-    @Column(name = "tip",columnDefinition = "text")
-    private String tip;
-
     //采购时间
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
     @Column(name = "time",columnDefinition = "timestamp")
@@ -45,7 +41,14 @@ public class PurchaseRecord
     @Column(name = "purchaseCode",columnDefinition = "int",nullable = false)
     private int purchaseCode;
 
+
     @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
     private float totalPrice;
+
+    //小记录，用于描述本次采购记录
+    @Column(name = "tip",columnDefinition = "text")
+    private String tip;
+
+
 
 }

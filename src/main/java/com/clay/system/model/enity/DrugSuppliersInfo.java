@@ -32,6 +32,10 @@ public class DrugSuppliersInfo
     @Column(name = "name",columnDefinition = "varchar(66)",nullable = false)
     private String name;
 
+    //供应商对象hashcode,在其它信息已设定的情况下
+    @Column(name = "supplierCode",columnDefinition = "int",nullable = false)
+    private int supplierCode;
+
     @Size(max = 15,message = "供应商商标不可超过15字")
     @NotBlank(message = "商标不可为空")
     //商标，无则和name相同
@@ -56,7 +60,4 @@ public class DrugSuppliersInfo
     @Column(name = "address",columnDefinition = "varchar(120)",nullable = false)
     private String address;
 
-    //供应商对象hashcode,在其它信息已设定的情况下
-    @Column(name = "supplierCode",columnDefinition = "int",nullable = false)
-    private int supplierCode;
 }

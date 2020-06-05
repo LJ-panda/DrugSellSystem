@@ -76,7 +76,9 @@
           <#--
           <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
           -->
+          <#--
           <button onclick="clickHind()" class="btn-primary btn btn-block">点击隐藏</button>
+          -->
           <!-- Page Heading -->
 
 

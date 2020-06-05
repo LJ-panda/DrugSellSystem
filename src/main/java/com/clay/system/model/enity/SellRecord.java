@@ -38,12 +38,16 @@ public class SellRecord
     @Column(name = "operationUser",columnDefinition = "varchar(50) default '无名'")
     private String operationUser;
 
-    @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
-    private float totalPrice;
 
     //订单码，根据对象生成
     @Column(name = "orderCode",columnDefinition = "int",nullable = false)
     private int orderCode;
+
+
+    @Column(name = "totalPrice",columnDefinition = "float",nullable = false)
+    private float totalPrice;
+
+
 
     @Transient
     private List<SellRecordDetails>detailsList;
