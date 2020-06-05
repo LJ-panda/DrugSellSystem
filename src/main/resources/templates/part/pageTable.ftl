@@ -17,7 +17,9 @@
                     <option value="4">4:采购记录</option>
                     <option value="5">5:销售记录</option>
                 </select>
+                <input type="hidden" value="-1" id="choice-val">
                 <a id="excel-btn" class="btn btn-primary" style="display: none" href="#">导出Excel</a>
+                <a id="flush-table" class="btn btn-primary" onclick="flushData()">点击刷新该表</a>
             </form>
         </div>
         <div class="card-body">

@@ -191,6 +191,8 @@
 
         if (Number.parseInt(elVal)>-1)
         {
+            $("#choice-val").val(elVal);
+
             changeExcelUrl(elVal);  //该变url
             let flag=false;
             let i;
@@ -203,8 +205,7 @@
                 {
                     console.log("show节点：data-table-mine-"+elVal.toString());
                     $("."+dataTableClassSet[i].toString()).show();
-                    getDataByType(elVal);
-
+                    //getDataByType(elVal);
                     flag=true;
                 }
                 else
@@ -232,6 +233,19 @@
             $("#excel-btn").attr("href","");
             $("#excel-btn").hide();
         }
+    }
+
+
+    /*
+     * 手动刷新页面数据
+     */
+    function flushData()
+    {
+        console.log("flush-data:"+$("#choice-val").val());
+        //清除对应表下 tbody的tr
+        $(".data-table-mine-"+$("#choice-val").val()+" tbody").empty();
+        //通过隐藏字段来获取值
+        getDataByType($("#choice-val").val());
     }
 
 
@@ -268,7 +282,7 @@
                 url="${springMacroRequestContext.contextPath}/api/sell/queryAll"
         }
         console.log("请求Url："+url);
-        $.get(url,function (data,status) {
+        $.get(url,function (data) {
             if (data.code==='OK')
             {
                 data=data.data;
