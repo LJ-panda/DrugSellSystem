@@ -75,12 +75,6 @@ public class ViewController
         return "part/record";
     }
 
-    //测试
-    @GetMapping(value = "/test")
-    public String test()
-    {
-        return "testTable";
-    }
 
     /**
      * 获取数据表格

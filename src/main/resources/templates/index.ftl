@@ -8,7 +8,9 @@
   <title>SB Admin 2 - Dashboard</title>
   <#include "common/header.ftl"/>
 
+  <#--   buttonsrc.ftl中有
   <script src="${springMacroRequestContext.contextPath}/js/jquery-3.4.1.js"></script>
+  -->
 
 
   <script>
