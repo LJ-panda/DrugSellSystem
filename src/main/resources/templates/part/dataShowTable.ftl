@@ -1,5 +1,6 @@
 <#--
 js获取后增加 data-table-mine-+类型的class 用于标识
+显示各个数据表的表格生成
 -->
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
@@ -43,7 +44,6 @@ js获取后增加 data-table-mine-+类型的class 用于标识
         <#elseif type=5>
             <th>ID</th>
             <th>交易时间</th>
-            <th>操作人</th>
             <th>单号代码</th>
             <th>总价</th>
             <th>详情</th>
@@ -91,7 +91,6 @@ js获取后增加 data-table-mine-+类型的class 用于标识
             <#elseif type=5>
                     <th>ID</th>
                     <th>交易时间</th>
-                    <th>操作人</th>
                     <th>单号代码</th>
                     <th>总价</th>
                     <th>详情</th>

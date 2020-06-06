@@ -73,7 +73,7 @@ public class ViewController
     @GetMapping(value = "/test")
     public String test()
     {
-        return "Record02";
+        return "testTable";
     }
 
     /**
@@ -88,6 +88,23 @@ public class ViewController
     }
 
 
+    /**
+     * 供SPA 获取库存扣减表格
+     * @return
+     */
+    @GetMapping(value = "/part/sellTable")
+    public String sellTable()
+    {
+        return "part/sellTable";
+    }
+
+
+    /**
+     * 供前端获取各个数据表的自己的数据报表表格
+     * @param type
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/part/dataTable/{type}")
     public String getDataTable(@PathVariable @PositiveOrZero(message = "必须大于0") int type, Model model)
     {
@@ -115,4 +132,6 @@ public class ViewController
        }
        return "part/dataShowTable";
     }
+
+
 }

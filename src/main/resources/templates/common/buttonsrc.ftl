@@ -349,4 +349,138 @@
         $("#excel-btn").show();
         $("#excel-btn").attr("href",excelUrl);
     }
+
+
+</script>
+
+
+
+<#--
+    专供药物销售调用
+-->
+<script>
+
+    /**
+     * 添加药物行
+     */
+    function addDrugTr()
+    {
+        let htmlStr="<tr class=\"sell-drug-item sell-drug-item-stamp\"><td ><select class=\"drug-list\" onclick=\"getData()\"><option value=\"-1\">code:name:num:price</option></select></td><td><input type=\"text\" required=\"required\" class=\"sell-drug-num\"/></td></tr>";
+
+        $("#drug-info-sell").append(htmlStr);
+
+    }
+
+
+    var GLOBAL_DATA=null;
+    var DEALED_CLASS=[];
+    function getData(){
+        let drugUrl="http://localhost:8090/drugSystem/api/storage/query";
+        if(GLOBAL_DATA==null)
+        {
+            $.get(drugUrl,function(data){
+                if(data.code==="OK")
+                {
+                    data=data.data;
+                    GLOBAL_DATA=data;
+                    for(i=0;i<GLOBAL_DATA.length;i++)
+                    {
+                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
+                        $(".drug-list").append(newEl);
+                    }
+                    $(".drug-list").addClass("drug-item");
+                }
+            });
+        }
+        else
+        {
+            let els=document.getElementsByClassName("drug-list");
+            for(i=0;i<els.length;i++)
+            {
+                if(!els[i].classList.contains("drug-item"))
+                {
+                    for(i=0;i<GLOBAL_DATA.length;i++)
+                    {
+                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
+                        $(".drug-list").append(newEl);
+                    }
+                    $(".drug-list").addClass("drug-item");
+                }
+            }
+
+        }
+    }
+
+
+    function postSellData()
+    {
+        let operationUser=$("#sellRecord #operationUser").val();
+        let tip=$("#sellRecord #tip").val();
+        let items=document.getElementsByClassName("sell-drug-item");
+        var drugDetails=[];
+        let i;
+        for (i=0;i<items.length;i++)
+        {
+            let item=items[i];
+            let itemVal=item.getElementsByClassName("drug-list")[0];
+            // if (itemVal.innerText==="code:name:num:price"||itemVal.value===-1)
+            // {
+            //     alert("请填写完数据");
+            //     return;
+            // }
+            //alert(itemVal.innerText.toString());
+            console.log("itemVal:"+itemVal.innerText);
+
+            let targetStr=itemVal.options[itemVal.selectedIndex].text.split(":");
+            //alert("目标数据："+targetStr.toString());
+            for (j=0;j<targetStr.length;j++)
+            {
+                console.log("val_"+j+"_:"+targetStr[j]);
+            }
+            let drugCode=targetStr[0];
+            let drugPrice=targetStr[3];
+            let getNumDrug=item.getElementsByClassName("sell-drug-num")[0].value;
+
+            if (getNumDrug>targetStr[2])
+            {
+                alert("该单销售超量！");
+                return;
+            }
+            let itemData={
+                drugCode:drugCode,
+                drugNum:getNumDrug,
+                drugPrice:drugPrice
+            };
+            drugDetails.push(itemData);
+        }
+        let totalPrice = 0;
+        for (i=0;i<drugDetails.length;i++)
+        {
+            totalPrice=totalPrice+drugDetails[i].drugPrice*drugDetails[i].drugNum;
+        }
+
+        let postData={
+            totalPrice:totalPrice,
+            details:drugDetails
+        };
+
+        console.log("post数据："+JSON.stringify(postData));
+
+        let postUrl="http://localhost:8090/drugSystem/api/sell/add";
+        $.ajax({
+            url:postUrl,
+            type:"post",
+            data:JSON.stringify(postData),      // 对象数组
+            contentType: "application/json;charset=UTF-8",
+            dataType:"json",
+            success:function (data) {
+                console.log("响应："+data);
+
+                //提交过后清除数据
+                $("#drug-info-sell .sell-drug-item-stamp").remove();
+                GLOBAL_DATA=null;
+            }
+        });
+    }
+
 </script>

@@ -69,6 +69,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <#--
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
@@ -87,19 +88,26 @@
             </div>
         </div>
     </li>
+    -->
+
+    <li class="nav-item">
+        <a class="nav-link" href="#sellTable">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>销售</span></a>
+    </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="#record">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>采购</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="#table">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>数据报表</span></a>
     </li>
 
     <!-- Divider -->

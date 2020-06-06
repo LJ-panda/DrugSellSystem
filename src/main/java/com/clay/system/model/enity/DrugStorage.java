@@ -47,7 +47,7 @@ public class DrugStorage
 
     //添加时间
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
-    @Column(name = "createTime",columnDefinition = "timestamp",nullable = false)
+    @Column(name = "createTime",columnDefinition = "timestamp")
     private Date createTime;
 
     //新增库存等的时间

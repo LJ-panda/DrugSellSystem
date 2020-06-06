@@ -16,4 +16,4 @@ spring:
     hibernate:
       naming:                        #表字段命名策略
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: create
+      ddl-auto: update

@@ -112,6 +112,7 @@ public class ConvertUtils
         SellRecord sellRecord=new SellRecord();
         sellRecord.setDetailsList(order.getDetails());
         sellRecord.setOrderCode(sellRecord.hashCode());
+        sellRecord.setTotalPrice(0);
         order.getDetails()
                 .forEach(item->{
                     sellRecord.setTotalPrice(sellRecord.getTotalPrice()+item.getDrugPrice()*item.getDrugNum());

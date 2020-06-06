@@ -29,7 +29,7 @@ public class SellRecordDetails
     @Column(name = "orderCode",columnDefinition = "int",nullable = false)
     private int orderCode;
 
-    @NotBlank(message = "必须有代码")
+    //@NotBlank(message = "必须有代码")
     //药物代码
     @Column(name = "drugCode",columnDefinition = "int",nullable = false)
     private int drugCode;

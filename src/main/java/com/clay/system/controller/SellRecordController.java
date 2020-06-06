@@ -54,7 +54,8 @@ public class SellRecordController
     @RequiresPermissions("order:insert")
     @Description(description = "销售信息存储接口")
     @PostMapping(value = "/add")
-    public SystemResponse add(@Validated VoOrder order) throws DrugSystemException {
+    public SystemResponse add(@Validated
+                                  @RequestBody VoOrder order) throws DrugSystemException {
         log.info("order:{}",order);
         SellRecord record= ConvertUtils.buildRecordByVo(order);
         recordService.saveRecord(record);
