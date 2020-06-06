@@ -97,6 +97,9 @@ public class ConvertUtils
         u.setPassword(user.getPassword());
         u.setStatus(user.getStatus()==1||user.getStatus()==-1?user.getStatus():1);
         u.setUserName(user.getUserName());
+        u.setPermissions(new LinkedList<>());
+        user.getPermissions()
+                .forEach(item-> u.getPermissions().add(item));
         return u;
     }
 

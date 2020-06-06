@@ -3,6 +3,7 @@ package com.clay.system.service;
 import com.clay.system.model.enity.User;
 
 
+import javax.transaction.SystemException;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public interface UserService
 {
     User getUserByEmail(String email);
 
-    int addUser(User user);
+    int addUser(User user) throws SystemException;
 
     List<User> getAll();
 }

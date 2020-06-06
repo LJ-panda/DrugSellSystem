@@ -46,24 +46,16 @@ public class ShiroConfig
 
         filterMap.put("/view/part/details","anon");
         filterMap.put("/view/test","anon");
-        //需要认证的url
-        //filterMap.put("/**","authc");
 
-        filterMap.put("/**","anon");
+        //登出
+        filterMap.put("/view/part/logoutSystem","logout");
+        //需要认证的url
+        filterMap.put("/**","authc");
+
+        //filterMap.put("/**","anon");
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;
-
-//        ShiroFilterFactoryBean shiroFilter=new ShiroFilterFactoryBean();
-//        shiroFilter.setSecurityManager(securityManager);
-//        Map<String,String>filterMap=new LinkedHashMap<>();
-//        filterMap.put("/api/user/login","anon");
-//        filterMap.put("/view/user/toLogin","anon");
-//        //暂时省略部分
-//        filterMap.put("/*","authc");
-//        shiroFilter.setFilterChainDefinitionMap(filterMap);
-//        shiroFilter.setUnauthorizedUrl("/view/user/toLogin");
-//        return shiroFilter;
     }
 
     @Bean
@@ -84,31 +76,6 @@ public class ShiroConfig
         return userRealm;
     }
 
-//    @Bean
-//    public SessionDAO sessionDAO(RedisManager redisManager)
-//    {
-//       RedisSessionDAO sessionDAO=new RedisSessionDAO();
-//       sessionDAO.setRedisManager(redisManager);
-//        sessionDAO.setExpire(60*10);
-//       return sessionDAO;
-//    }
-
-//    @Bean
-//    public SessionManager sessionManager()
-//    {
-//
-//        return new DefaultWebSessionManager();
-//    }
-//
-//    @Bean
-//    public CacheManager cacheManager(RedisManager redisManager)
-//    {
-//        RedisCacheManager cacheManager=new RedisCacheManager();
-//        cacheManager.setExpire(60*10);
-//        cacheManager.setRedisManager(redisManager);
-//        return cacheManager;
-//    }
-
     /**
      * 开启注解权限
      * @param securityManager
@@ -116,7 +83,7 @@ public class ShiroConfig
      */
 
     //暂时关闭权限
-    //@Bean
+    @Bean
     public AuthorizationAttributeSourceAdvisor advisor(SecurityManager securityManager)
     {
         AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();

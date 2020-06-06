@@ -12,11 +12,11 @@
 
 
   <script>
-    function clickHind()
-    {
-      $("#part-record-div").toggle();
-    }
 
+    /**
+     * 核心 SPA 代码
+     * @type {*[]}   存储请求的碎片id和hash组合值
+     */
     var hashSet=[];
     function hashChageFun()
     {
@@ -36,7 +36,7 @@
           $("#"+hashSet[i].split("@")[1]).hide();
         }
       }
-      if (!flag)
+      if (!flag&&hash.length!==0)
       {
         console.log("请求Url："+baseUrl+hash);
         $.get(baseUrl+hash,function (data) {
@@ -73,19 +73,6 @@
         <!-- Begin Page Content -->
         <div class="container-fluid" id="father-div">
 
-          <#--测试数据格式的button-->
-          <#--
-          <button type="button" onclick="postRecord()" class="btn-block btn-primary">点击发送数据</button>
-          -->
-          <#--
-          <button onclick="clickHind()" class="btn-primary btn btn-block">点击隐藏</button>
-          -->
-          <!-- Page Heading -->
-
-
-          <#--
-          <#include "part/record.ftl"/>
-          -->
 
           <!-- Content Row -->
 

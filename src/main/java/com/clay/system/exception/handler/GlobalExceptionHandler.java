@@ -49,7 +49,7 @@ public class GlobalExceptionHandler
         return new SystemResponse()
                 .code(HttpStatus.LOCKED)
                 .message(msg)
-                .data(lae);
+                .data(null);
     }
 
     /**
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler
         return new SystemResponse()
                 .code(HttpStatus.BAD_REQUEST)
                 .message(msg)
-                .data(ae);
+                .data(null);
     }
 
     /**
@@ -84,7 +84,7 @@ public class GlobalExceptionHandler
         return new SystemResponse()
                 .code(HttpStatus.BAD_REQUEST)
                 .message(msg)
-                .data(se);
+                .data(null);
     }
 
     /**
@@ -101,7 +101,7 @@ public class GlobalExceptionHandler
         return new SystemResponse()
                 .code(HttpStatus.BAD_REQUEST)
                 .message(msg)
-                .data(e);
+                .data(null);
     }
 
 }

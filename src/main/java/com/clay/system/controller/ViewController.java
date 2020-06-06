@@ -1,5 +1,6 @@
 package com.clay.system.controller;
 
+import com.clay.system.annotation.Description;
 import com.clay.system.model.DataType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class ViewController
      * 登陆页面
      * @return login.ftl
      */
+    @Description(description = "登陆视图获取")
     @GetMapping(value = "/user/toLogin")
     public String toLogin()
     {
@@ -42,6 +44,7 @@ public class ViewController
      * 登陆成功后进入用户主页
      * @return  index.ftl
      */
+    @Description(description = "用户主页视图获取")
     @GetMapping(value = "/user/index")
     public String toIndex()
     {
@@ -53,6 +56,7 @@ public class ViewController
      * 没毛病
      * @return
      */
+    @Description(description = "药物采购详情表格获取")
     @GetMapping(value = "/part/details")
     public String details()
     {
@@ -64,12 +68,14 @@ public class ViewController
      * 获取采购记录基础表格
      * @return
      */
+    @Description(description = "药物采购基础表格获取")
     @GetMapping(value = "/part/record")
     public String record()
     {
         return "part/record";
     }
 
+    //测试
     @GetMapping(value = "/test")
     public String test()
     {
@@ -81,6 +87,7 @@ public class ViewController
      * 这个表格计划用来做数据报表的在线显示和查询
      * @return
      */
+    @Description(description = "数据报表父表获取")
     @GetMapping(value = "/part/table")
     public String table()
     {
@@ -92,6 +99,7 @@ public class ViewController
      * 供SPA 获取库存扣减表格
      * @return
      */
+    @Description(description = "销售扣减表格获取")
     @GetMapping(value = "/part/sellTable")
     public String sellTable()
     {
@@ -100,11 +108,22 @@ public class ViewController
 
 
     /**
+     * 供SPA用户添加
+     * @return
+     */
+    @Description(description = "用户添加表格获取")
+    @GetMapping(value = "/part/user")
+    public String getUserAdd()
+    {
+        return "part/userAdd";
+    }
+    /**
      * 供前端获取各个数据表的自己的数据报表表格
      * @param type
      * @param model
      * @return
      */
+    @Description(description = "数据报表表格生成")
     @GetMapping(value = "/part/dataTable/{type}")
     public String getDataTable(@PathVariable @PositiveOrZero(message = "必须大于0") int type, Model model)
     {

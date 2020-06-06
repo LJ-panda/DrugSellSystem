@@ -3,6 +3,7 @@ package com.clay.system.model.enity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 /**
@@ -24,6 +25,7 @@ public class Permission
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    //@NotBlank(message = "")
     @Column(name = "name",nullable = false)
     private String name;
 

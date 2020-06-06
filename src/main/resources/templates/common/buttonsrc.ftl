@@ -18,6 +18,263 @@
 <!-- Page level custom scripts -->
 <script src="${springMacroRequestContext.contextPath}/js/demo/datatables-demo.js"></script>
 
+<#--
+   处理ajax调用的函数
+   全局统一ajax预处理
+-->
+<script>
+    function ajaxRepAlert(repData)
+    {
+        //排除页面请求
+        if (repData.msg!==undefined)
+        {
+            if (!(repData.code==="OK"))
+            {
+                let msg=repData.msg;
+                alert("状态码："+repData.code+"\n消息："+msg);
+            }
+        }
+    }
+</script>
+
+<#--
+    专供药物销售调用
+-->
+<script>
+
+    /**
+     * 添加药物行
+     */
+    function addDrugTr()
+    {
+        let htmlStr="<tr class=\"sell-drug-item sell-drug-item-stamp\"><td ><select class=\"drug-list\" onclick=\"getData()\"><option value=\"-1\">code:name:num:price</option></select></td><td><input type=\"text\" required=\"required\" class=\"sell-drug-num\"/></td></tr>";
+
+        $("#drug-info-sell").append(htmlStr);
+
+    }
+
+
+    var GLOBAL_DATA=null;
+    var DEALED_CLASS=[];
+    function getData(){
+        let drugUrl="${springMacroRequestContext.contextPath}/api/storage/query";
+        if(GLOBAL_DATA==null)
+        {
+            $.get(drugUrl,function(data){
+                ajaxRepAlert(data);
+                if(data.code==="OK")
+                {
+                    data=data.data;
+                    GLOBAL_DATA=data;
+                    for(i=0;i<GLOBAL_DATA.length;i++)
+                    {
+                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
+                        $(".drug-list").append(newEl);
+                    }
+                    $(".drug-list").addClass("drug-item");
+                }
+            });
+        }
+        else
+        {
+            let els=document.getElementsByClassName("drug-list");
+            for(i=0;i<els.length;i++)
+            {
+                if(!els[i].classList.contains("drug-item"))
+                {
+                    for(i=0;i<GLOBAL_DATA.length;i++)
+                    {
+                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
+                        $(".drug-list").append(newEl);
+                    }
+                    $(".drug-list").addClass("drug-item");
+                }
+            }
+
+        }
+    }
+
+
+    function postSellData()
+    {
+        let operationUser=$("#sellRecord #operationUser").val();
+        let tip=$("#sellRecord #tip").val();
+        let items=document.getElementsByClassName("sell-drug-item");
+        var drugDetails=[];
+        let i;
+        for (i=0;i<items.length;i++)
+        {
+            let item=items[i];
+            let itemVal=item.getElementsByClassName("drug-list")[0];
+             if (itemVal.innerText==="code:name:num:price"||itemVal.value===-1)
+             {
+                 alert("请填写完数据");
+                 return;
+             }
+            //alert(itemVal.innerText.toString());
+            console.log("itemVal:"+itemVal.innerText);
+
+            let targetStr=itemVal.options[itemVal.selectedIndex].text.split(":");
+            //alert("目标数据："+targetStr.toString());
+            for (j=0;j<targetStr.length;j++)
+            {
+                console.log("val_"+j+"_:"+targetStr[j]);
+            }
+            let drugCode=targetStr[0];
+            let drugPrice=targetStr[3];
+            let getNumDrug=item.getElementsByClassName("sell-drug-num")[0].value;
+
+            if (getNumDrug>targetStr[2])
+            {
+                alert("该单销售超量！");
+                return;
+            }
+            let itemData={
+                drugCode:drugCode,
+                drugNum:getNumDrug,
+                drugPrice:drugPrice
+            };
+            drugDetails.push(itemData);
+        }
+        let totalPrice = 0;
+        for (i=0;i<drugDetails.length;i++)
+        {
+            totalPrice=totalPrice+drugDetails[i].drugPrice*drugDetails[i].drugNum;
+        }
+
+        let postData={
+            totalPrice:totalPrice,
+            details:drugDetails
+        };
+
+        console.log("post数据："+JSON.stringify(postData));
+
+        let postUrl="${springMacroRequestContext.contextPath}/api/sell/add";
+        $.ajax({
+            url:postUrl,
+            type:"post",
+            data:JSON.stringify(postData),      // 对象数组
+            contentType: "application/json;charset=UTF-8",
+            dataType:"json",
+            success:function (data) {
+                ajaxRepAlert(data);
+                console.log("响应："+data);
+
+                //提交过后清除数据
+                $("#drug-info-sell .sell-drug-item-stamp").remove();
+                GLOBAL_DATA=null;
+            }
+        });
+    }
+
+</script>
+
+
+
+<#--
+   用户添加的js
+    -->
+
+<script>
+
+    var PER_SET=null;
+    function queryAndSetPer()
+    {
+        if(PER_SET==null)
+        {
+            let url="${springMacroRequestContext.contextPath}/api/per/query";
+            $.get(url,function(data)
+                {
+                    ajaxRepAlert(data);
+                    if(data!=null&&data.code==="OK")
+                    {
+                        data=data.data;
+                        PER_SET=data;
+                        let i;
+                        for(i=0;i<PER_SET.length;i++)
+                        {
+                            let op="<option value=\""+PER_SET[i].id+"\">"+PER_SET[i].name+"</option>";
+                            $("#user_level").append(op);
+                        }
+                    }
+                }
+            );
+        }
+
+    }
+
+    var ADDED_USER_PER=[];
+
+    function clickAddPermission()
+    {
+        let op_text=$("#user_level").find("option:selected").text();
+        let op_id=$("#user_level").val();
+        let permission={
+            id:op_id,
+            name:op_text
+        };
+        ADDED_USER_PER.push(permission);
+        //alert("choice:"+op_id+"_"+op_text);
+        $("#user_per").append(op_text+";");
+        console.log(JSON.stringify(ADDED_USER_PER));
+    }
+
+
+    function addUserToServer()
+    {
+        let userName=$("#user_name").val();
+        let email=$("#user_email").val();
+        let status=$("#user_status").val();
+        let password=$("#user_pwd").val();
+        if(password!=$("#user_pwd2").val())
+        {
+            alert("两次密码不同");
+            return;
+        }
+        let userDataObj={
+            userName:userName,
+            email:email,
+            status:status,
+            password:password,
+            permissions:ADDED_USER_PER
+        };
+
+
+        console.log("发送用户数据："+JSON.stringify(userDataObj));
+
+        let postUrl="${springMacroRequestContext.contextPath}/api/user/add";
+        $.ajax({
+            url:postUrl,
+            type:"post",
+            data:JSON.stringify(userDataObj),      // 对象数组
+            contentType: "application/json;charset=UTF-8",
+            dataType:"json",
+            success:function (data) {
+                clearTableData();
+                console.log("响应："+data);
+                ajaxRepAlert(data);
+            }
+        });
+    }
+
+    function clearTableData()
+    {
+        ADDED_USER_PER=[];
+        $("#user_name").val("");
+        $("#user_email").val("");
+        $("#user_status").val("");
+        $("#user_pwd").val("");
+        $("#user_pwd2").val("");
+        document.getElementById("user_per").innerText="";
+    }
+</script>
+
+
+
+
+<#--
+   主要是用户添加采购记录
+-->
 <script>
 
     /*
@@ -34,6 +291,7 @@
         {
             let url="${springMacroRequestContext.contextPath}/view/part/details";
             $.get(url,function(data){
+                ajaxRepAlert(data);
                 detailTable=data;
                 $("#items").append(data);
             });
@@ -57,6 +315,7 @@
         if (code==null)
         {
             $.get(url,function (data) {
+                ajaxRepAlert(data);
                 console.log("data:"+data);
                 code=data.data;
                 handlerIt(code);
@@ -95,9 +354,9 @@
      * 发送整理的采购记录数据到后端
      *
      */
-    function postRecordData() {
+    function postRecordToServer() {
         let postUrl="${springMacroRequestContext.contextPath}/api/record/add";
-        let recordData=getData();
+        let recordData=getDrugFromServer();
         if (recordData==null)
         {
             return;
@@ -111,6 +370,7 @@
             dataType:"json",
             success:function (data) {
                 console.log("响应："+data);
+                ajaxRepAlert(data);
             }
         });
 
@@ -120,7 +380,7 @@
      * 整理页面的数据
      * @returns {{drugs: [], tip: (*|jQuery|HTMLElement), operationUser: (*|jQuery|HTMLElement)}}
      */
-    function getData()
+    function getDrugFromServer()
     {
         let operationUser=$("#operationUser").val();
         let tip=$("#tip").val();
@@ -224,6 +484,7 @@
             {
                 baseUrl=baseUrl+elVal;
                 $.get(baseUrl,function (data) {
+                    ajaxRepAlert(data);
                     //data.replace("class=\"table table-bordered\"","class=\"table table-bordered data-table-mine-"+elVal+"\"");
                     data=data.substring(0,data.indexOf("\"")+1)+"data-table-mine-"+elVal+" "+data.substring(data.indexOf("\"")+1,data.length);
                     dataTableClassSet.push("data-table-mine-"+elVal);
@@ -288,6 +549,7 @@
         }
         console.log("请求Url："+url);
         $.get(url,function (data) {
+            ajaxRepAlert(data);
             if (data.code==='OK')
             {
                 data=data.data;
@@ -350,137 +612,5 @@
         $("#excel-btn").attr("href",excelUrl);
     }
 
-
-</script>
-
-
-
-<#--
-    专供药物销售调用
--->
-<script>
-
-    /**
-     * 添加药物行
-     */
-    function addDrugTr()
-    {
-        let htmlStr="<tr class=\"sell-drug-item sell-drug-item-stamp\"><td ><select class=\"drug-list\" onclick=\"getData()\"><option value=\"-1\">code:name:num:price</option></select></td><td><input type=\"text\" required=\"required\" class=\"sell-drug-num\"/></td></tr>";
-
-        $("#drug-info-sell").append(htmlStr);
-
-    }
-
-
-    var GLOBAL_DATA=null;
-    var DEALED_CLASS=[];
-    function getData(){
-        let drugUrl="http://localhost:8090/drugSystem/api/storage/query";
-        if(GLOBAL_DATA==null)
-        {
-            $.get(drugUrl,function(data){
-                if(data.code==="OK")
-                {
-                    data=data.data;
-                    GLOBAL_DATA=data;
-                    for(i=0;i<GLOBAL_DATA.length;i++)
-                    {
-                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
-                        $(".drug-list").append(newEl);
-                    }
-                    $(".drug-list").addClass("drug-item");
-                }
-            });
-        }
-        else
-        {
-            let els=document.getElementsByClassName("drug-list");
-            for(i=0;i<els.length;i++)
-            {
-                if(!els[i].classList.contains("drug-item"))
-                {
-                    for(i=0;i<GLOBAL_DATA.length;i++)
-                    {
-                        let newEl="<option value=\""+GLOBAL_DATA[i].id+"\">"+GLOBAL_DATA[i].drugCode+":"+GLOBAL_DATA[i].drugName+":"+GLOBAL_DATA[i].drugNum+":"+GLOBAL_DATA[i].singlePrice+"</option>";
-                        $(".drug-list").append(newEl);
-                    }
-                    $(".drug-list").addClass("drug-item");
-                }
-            }
-
-        }
-    }
-
-
-    function postSellData()
-    {
-        let operationUser=$("#sellRecord #operationUser").val();
-        let tip=$("#sellRecord #tip").val();
-        let items=document.getElementsByClassName("sell-drug-item");
-        var drugDetails=[];
-        let i;
-        for (i=0;i<items.length;i++)
-        {
-            let item=items[i];
-            let itemVal=item.getElementsByClassName("drug-list")[0];
-            // if (itemVal.innerText==="code:name:num:price"||itemVal.value===-1)
-            // {
-            //     alert("请填写完数据");
-            //     return;
-            // }
-            //alert(itemVal.innerText.toString());
-            console.log("itemVal:"+itemVal.innerText);
-
-            let targetStr=itemVal.options[itemVal.selectedIndex].text.split(":");
-            //alert("目标数据："+targetStr.toString());
-            for (j=0;j<targetStr.length;j++)
-            {
-                console.log("val_"+j+"_:"+targetStr[j]);
-            }
-            let drugCode=targetStr[0];
-            let drugPrice=targetStr[3];
-            let getNumDrug=item.getElementsByClassName("sell-drug-num")[0].value;
-
-            if (getNumDrug>targetStr[2])
-            {
-                alert("该单销售超量！");
-                return;
-            }
-            let itemData={
-                drugCode:drugCode,
-                drugNum:getNumDrug,
-                drugPrice:drugPrice
-            };
-            drugDetails.push(itemData);
-        }
-        let totalPrice = 0;
-        for (i=0;i<drugDetails.length;i++)
-        {
-            totalPrice=totalPrice+drugDetails[i].drugPrice*drugDetails[i].drugNum;
-        }
-
-        let postData={
-            totalPrice:totalPrice,
-            details:drugDetails
-        };
-
-        console.log("post数据："+JSON.stringify(postData));
-
-        let postUrl="http://localhost:8090/drugSystem/api/sell/add";
-        $.ajax({
-            url:postUrl,
-            type:"post",
-            data:JSON.stringify(postData),      // 对象数组
-            contentType: "application/json;charset=UTF-8",
-            dataType:"json",
-            success:function (data) {
-                console.log("响应："+data);
-
-                //提交过后清除数据
-                $("#drug-info-sell .sell-drug-item-stamp").remove();
-                GLOBAL_DATA=null;
-            }
-        });
-    }
 
 </script>

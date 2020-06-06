@@ -1,5 +1,6 @@
 package com.clay.system.service.imp;
 
+import com.clay.system.mapper.UserAndPermissionMapper;
 import com.clay.system.mapper.UserMapper;
 import com.clay.system.model.enity.User;
 import com.clay.system.service.UserService;
@@ -7,9 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.transaction.SystemException;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author clay
@@ -29,6 +33,9 @@ public class UserServiceImp implements UserService
 
     private UserMapper userMapper;
 
+    //赋权
+    private UserAndPermissionMapper upMapper;
+
     @Override
     public User getUserByEmail(String email)
     {
@@ -38,11 +45,27 @@ public class UserServiceImp implements UserService
         return user;
     }
 
+    /**
+     * 判断是否已有
+     * 并添加和授权
+     * @param user
+     * @return
+     * @throws SystemException
+     */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public int addUser(User user)
-    {
+    public int addUser(User user) throws SystemException {
         log.debug("service 层添加 User：{}",user);
-        return userMapper.insertUser(user);
+        if (Objects.nonNull(userMapper.queryUserByEmail(user.getEmail())))
+        {
+            throw new SystemException("用户重复添加");
+        }
+        int v=userMapper.insertUser(user);
+        User  user1=userMapper.queryUserByEmail(user.getEmail());
+        log.info("查询User:{}\t权限：{}",user1,user.getPermissions());
+        user.getPermissions()
+                .forEach(item->upMapper.insert(item.getId(),user1.getId()));
+        return v;
     }
 
     @Override

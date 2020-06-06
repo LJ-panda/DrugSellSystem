@@ -13,12 +13,10 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.transaction.SystemException;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -73,8 +71,9 @@ public class UserController
     @RequiresPermissions("user:insert")
     @Description(description = "用户新增")
     @PostMapping(value = "/add")
-    public SystemResponse add(@Validated VoUser user)
-    {
+    public SystemResponse add(@Validated
+                                  @RequestBody VoUser user) throws SystemException {
+        log.info("userData:{}"+user);
         userService.addUser(ConvertUtils.buildUserByVo(user));
         return new SystemResponse()
                 .success()

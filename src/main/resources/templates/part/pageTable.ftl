@@ -19,7 +19,10 @@
                 </select>
                 <input type="hidden" value="-1" id="choice-val">
                 <a id="excel-btn" class="btn btn-primary" style="display: none" href="#">导出Excel</a>
-                <a id="flush-table" class="btn btn-primary" onclick="flushData()">点击刷新该表</a>
+                <a id="flush-table" class="btn btn-primary" onclick="flushData()">手动刷新该表</a>
+                <div class="card bg-info text-white">
+                    <div class="card-body">详细易看数据请导出</div>
+                </div>
             </form>
         </div>
         <div class="card-body">

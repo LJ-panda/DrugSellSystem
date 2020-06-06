@@ -11,6 +11,6 @@
         SELECT userName,email,status,description FROM t_user
     </select>
     <select id="queryUserByEmail" resultType="com.clay.system.model.enity.User">
-        SELECT userName,email,status,password FROM t_user WHERE email = #{email}
+        SELECT id,userName,email,status,password FROM t_user WHERE email = #{email}
     </select>
 </mapper>

@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">药物销售管理系统<sup>2</sup></div>
     </a>
 
     <!-- Divider -->
@@ -27,6 +27,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <#--
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -40,6 +41,7 @@
             </div>
         </div>
     </li>
+    -->
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <#--
@@ -90,6 +92,11 @@
     </li>
     -->
 
+    <li class="nav-item">
+        <a class="nav-link" href="#user">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>用户添加/授权</span></a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="#sellTable">
             <i class="fas fa-fw fa-chart-area"></i>

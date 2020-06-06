@@ -1,7 +1,10 @@
+<#--
+   新增采购记录的表格，SPA 碎片
+-->
 <div id="part-record-div" class="div-id">
 
     <button class="btn btn-block btn-primary" onclick="add()">点击添加</button>
-    <button class="btn btn-block btn-primary" onclick="postRecordData()">点击post数据</button>
+    <button class="btn btn-block btn-primary" onclick="postRecordToServer()">点击提交数据</button>
     <form>
         <table class="table table-striped"  id="record">
             <tr>

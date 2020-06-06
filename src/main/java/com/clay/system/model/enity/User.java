@@ -3,6 +3,7 @@ package com.clay.system.model.enity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @Author clay
@@ -38,4 +39,8 @@ public class User
 
     @Column(name = "description",columnDefinition = "text")
     private String description;
+
+    //主要用于接收前端数据
+    @Transient
+    private List<Permission>permissions;
 }

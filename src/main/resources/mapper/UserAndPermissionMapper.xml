@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clay.system.mapper.UserAndPermissionMapper">
+    <insert id="insert">
+        INSERT INTO t_userAndPermission(userId,pId)
+        VALUES(#{uId},#{pId})
+    </insert>
 
 
     <select id="queryByUserEmail" resultType="com.clay.system.model.enity.Permission">

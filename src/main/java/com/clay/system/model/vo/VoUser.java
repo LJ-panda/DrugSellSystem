@@ -1,10 +1,13 @@
 package com.clay.system.model.vo;
 
+import com.clay.system.model.enity.Permission;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.List;
 
 /**
  * @Author clay
@@ -22,7 +25,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 public class VoUser
 {
-    @Positive(message = "用户ID必须大于0")
+    //@Positive(message = "用户ID必须大于0")
     private int id;
 
     @NotBlank(message = "用户名不可为空白")
@@ -39,4 +42,7 @@ public class VoUser
 
     @Size(max = 150,message = "描述必须在150字内")
     private String description;
+
+    @Valid
+    private List<Permission>permissions;
 }

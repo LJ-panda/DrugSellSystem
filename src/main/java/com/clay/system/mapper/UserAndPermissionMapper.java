@@ -16,4 +16,6 @@ import java.util.List;
 public interface UserAndPermissionMapper
 {
     List<Permission> queryByUserEmail(String email);
+
+    int insert(int pId,int uId);
 }
