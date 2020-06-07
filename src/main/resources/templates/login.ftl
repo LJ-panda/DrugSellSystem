@@ -25,11 +25,18 @@
       }
       let postData={email:email,password:password};
       $.post(loginUrl,postData,function (data) {
-        console.log("响应数据："+data);
-        if (data.data===true)
+        if (data.code==="OK")
         {
-          console.log("login ok");
-          window.location.href=toUrl;
+          console.log("响应数据："+data);
+          if (data.data===true)
+          {
+            console.log("login ok");
+            window.location.href=toUrl;
+          }
+        }
+        else
+        {
+          ajaxRepAlert(data);
         }
       });
     }

@@ -30,7 +30,7 @@
         if (repData.code!==undefined)
         {
             let msg=repData.msg;
-            alert("状态码："+repData.code+"\\n消息："+msg);
+            alert("状态码："+repData.code+"\n消息："+msg);
         }
     }
 </script>
