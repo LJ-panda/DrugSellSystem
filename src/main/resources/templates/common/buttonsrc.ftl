@@ -21,18 +21,16 @@
 <#--
    处理ajax调用的函数
    全局统一ajax预处理
+   注意获取下拉成功不需要弹出,通过flag控制
 -->
 <script>
     function ajaxRepAlert(repData)
     {
         //排除页面请求
-        if (repData.msg!==undefined)
+        if (repData.code!==undefined)
         {
-            if (!(repData.code==="OK"))
-            {
-                let msg=repData.msg;
-                alert("状态码："+repData.code+"\n消息："+msg);
-            }
+            let msg=repData.msg;
+            alert("状态码："+repData.code+"\\n消息："+msg);
         }
     }
 </script>
@@ -61,7 +59,6 @@
         if(GLOBAL_DATA==null)
         {
             $.get(drugUrl,function(data){
-                ajaxRepAlert(data);
                 if(data.code==="OK")
                 {
                     data=data.data;
@@ -72,6 +69,10 @@
                         $(".drug-list").append(newEl);
                     }
                     $(".drug-list").addClass("drug-item");
+                }
+                else
+                {
+                    alert("code:"+data.code+"\\n信息:"+data.msg);
                 }
             });
         }
@@ -185,7 +186,6 @@
             let url="${springMacroRequestContext.contextPath}/api/per/query";
             $.get(url,function(data)
                 {
-                    ajaxRepAlert(data);
                     if(data!=null&&data.code==="OK")
                     {
                         data=data.data;
@@ -196,6 +196,10 @@
                             let op="<option value=\""+PER_SET[i].id+"\">"+PER_SET[i].name+"</option>";
                             $("#user_level").append(op);
                         }
+                    }
+                    else
+                    {
+                        ajaxRepAlert(data);
                     }
                 }
             );
@@ -230,6 +234,10 @@
         {
             alert("两次密码不同");
             return;
+        }
+        if (userName.length===0||email.length===0||password.length===0)
+        {
+            alert("请完整的填写数据！");
         }
         let userDataObj={
             userName:userName,
@@ -315,7 +323,10 @@
         if (code==null)
         {
             $.get(url,function (data) {
-                ajaxRepAlert(data);
+                if (data.code!=="OK")
+                {
+                    ajaxRepAlert(data);
+                }
                 console.log("data:"+data);
                 code=data.data;
                 handlerIt(code);
@@ -356,7 +367,7 @@
      */
     function postRecordToServer() {
         let postUrl="${springMacroRequestContext.contextPath}/api/record/add";
-        let recordData=getDrugFromServer();
+        let recordData=getDrugForServer();
         if (recordData==null)
         {
             return;
@@ -370,6 +381,12 @@
             dataType:"json",
             success:function (data) {
                 console.log("响应："+data);
+                //成功提交后清除表单
+                if (data.code==="OK")
+                {
+                    $(".drug-info-table-container").empty();
+                    $("#record input").val("");
+                }
                 ajaxRepAlert(data);
             }
         });
@@ -380,7 +397,7 @@
      * 整理页面的数据
      * @returns {{drugs: [], tip: (*|jQuery|HTMLElement), operationUser: (*|jQuery|HTMLElement)}}
      */
-    function getDrugFromServer()
+    function getDrugForServer()
     {
         let operationUser=$("#operationUser").val();
         let tip=$("#tip").val();
@@ -484,7 +501,11 @@
             {
                 baseUrl=baseUrl+elVal;
                 $.get(baseUrl,function (data) {
-                    ajaxRepAlert(data);
+                   if(data.code!=="OK")
+                   {
+                       //屏蔽掉正常获取表格的干扰
+                       ajaxRepAlert(data);
+                   }
                     //data.replace("class=\"table table-bordered\"","class=\"table table-bordered data-table-mine-"+elVal+"\"");
                     data=data.substring(0,data.indexOf("\"")+1)+"data-table-mine-"+elVal+" "+data.substring(data.indexOf("\"")+1,data.length);
                     dataTableClassSet.push("data-table-mine-"+elVal);
@@ -549,7 +570,11 @@
         }
         console.log("请求Url："+url);
         $.get(url,function (data) {
-            ajaxRepAlert(data);
+            if(data.code!=="OK")
+            {
+                //屏蔽掉正常获取数据的干扰
+                ajaxRepAlert(data);
+            }
             if (data.code==='OK')
             {
                 data=data.data;

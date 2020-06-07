@@ -24,11 +24,13 @@
 
             <tr>
                 <td align="center" rowspan="*">药品信息</td>
-                <td id="items">
+                <td id="items" class="drug-info-table-container">
                     <!--
                     用于添加的这一段，直接通过ajax去后端获取该段代码的渲染值，然后赋值给js变量
                     -->
+                    <#--  通过点击添加
                     <#include "details.ftl"/>
+                    -->
                 </td>
             </tr>
 
