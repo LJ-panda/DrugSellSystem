@@ -89,7 +89,7 @@ VALUES('whoami','456789@qq.com','123456789',1,'nothing');
 
 INSERT INTO t_userAndPermission(userId,pId)VALUES(1,1);
 INSERT INTO t_userAndPermission(userId,pId)VALUES(2,2);
-INSERT INTO t_userAndPermission(userId,pId)VALUES(2,7);
+INSERT INTO t_userAndPermission(userId,pId)VALUES(2,8);
 
 
 /**
