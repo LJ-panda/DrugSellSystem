@@ -5,6 +5,7 @@ import com.clay.system.mapper.PermissionMapper;
 import com.clay.system.model.SystemResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class PermissionController
 {
     private PermissionMapper mapper;
 
+    @RequiresPermissions(value = "permission:queryAll")
     @Description(description = "获取所有权限")
     @GetMapping(value = "/query")
     public SystemResponse queryAll()

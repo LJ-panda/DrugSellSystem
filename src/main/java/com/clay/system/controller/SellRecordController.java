@@ -85,6 +85,7 @@ public class SellRecordController
      * 查询所有库存扣减情况
      * @return
      */
+    @RequiresPermissions(value = "/order:query")
     @GetMapping(value = "/queryAll")
     public SystemResponse queryAll()
     {

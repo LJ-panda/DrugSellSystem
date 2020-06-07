@@ -61,6 +61,22 @@ INSERT INTO t_permission(name,description)VALUES('order:delete','nothing');
 INSERT INTO t_permission(name,description)VALUES('order:queryAll','nothing');
 
 
+INSERT INTO t_permission(name,description)VALUES('storage:*','nothing');
+INSERT INTO t_permission(name,description)VALUES('storage:insert','nothing');
+INSERT INTO t_permission(name,description)VALUES('storage:query','nothing');
+INSERT INTO t_permission(name,description)VALUES('storage:update','nothing');
+INSERT INTO t_permission(name,description)VALUES('storage:delete','nothing');
+INSERT INTO t_permission(name,description)VALUES('storage:queryAll','nothing');
+
+
+INSERT INTO t_permission(name,description)VALUES('permission:*','nothing');
+INSERT INTO t_permission(name,description)VALUES('permission:insert','nothing');
+INSERT INTO t_permission(name,description)VALUES('permission:query','nothing');
+INSERT INTO t_permission(name,description)VALUES('permission:update','nothing');
+INSERT INTO t_permission(name,description)VALUES('permission:delete','nothing');
+INSERT INTO t_permission(name,description)VALUES('permission:queryAll','nothing');
+
+
 /**
  * Excel 报表权限
  */

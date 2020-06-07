@@ -23,10 +23,11 @@ import javax.validation.constraints.PositiveOrZero;
  * 视图控制器
  * 为前端提供视图
  */
-@Slf4j
+//@Slf4j
 @Validated
 @Controller
 @RequestMapping(value = "/view")
+@SuppressWarnings("all")
 public class ViewController
 {
     /**
@@ -42,6 +43,7 @@ public class ViewController
 
     /**
      * 登陆成功后进入用户主页
+     * SPA 核心页面，基础页面框架
      * @return  index.ftl
      */
     @Description(description = "用户主页视图获取")
@@ -53,6 +55,7 @@ public class ViewController
 
     /**
      * 用于前端获取详情表格部分
+     * 主要是采购界面点击添加的那个药物详情表格
      * 没毛病
      * @return
      */
@@ -60,12 +63,13 @@ public class ViewController
     @GetMapping(value = "/part/details")
     public String details()
     {
-        log.info("details请求");
         return "part/details";
     }
 
     /**
      * 获取采购记录基础表格
+     * 采购基础表格界面
+     * SPA 碎片之一，上面 details 的父碎片
      * @return
      */
     @Description(description = "药物采购基础表格获取")
@@ -79,6 +83,7 @@ public class ViewController
     /**
      * 获取数据表格
      * 这个表格计划用来做数据报表的在线显示和查询
+     * SPA 大碎片之一
      * @return
      */
     @Description(description = "数据报表父表获取")
@@ -91,6 +96,7 @@ public class ViewController
 
     /**
      * 供SPA 获取库存扣减表格
+     * SPA 大碎片之一
      * @return
      */
     @Description(description = "销售扣减表格获取")
@@ -103,6 +109,7 @@ public class ViewController
 
     /**
      * 供SPA用户添加
+     * SPA 大碎片之一
      * @return
      */
     @Description(description = "用户添加表格获取")
@@ -113,8 +120,8 @@ public class ViewController
     }
     /**
      * 供前端获取各个数据表的自己的数据报表表格
-     * @param type
-     * @param model
+     * @param type  根据前端传递的代码进行条件渲染基础表格
+     * @param model 传递给模板引擎的参数容器
      * @return
      */
     @Description(description = "数据报表表格生成")
@@ -125,7 +132,6 @@ public class ViewController
        {
            case 0:
                model.addAttribute("type",0);
-               model.addAttribute("msg","日志表格");
                break;
            case 1:
                model.addAttribute("type",1);
