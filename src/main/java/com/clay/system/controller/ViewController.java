@@ -153,4 +153,11 @@ public class ViewController
     }
 
 
+
+    @GetMapping(value = "/test")
+    public String getTestTable()
+    {
+        return "test/tables";
+    }
+
 }

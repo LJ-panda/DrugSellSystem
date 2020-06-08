@@ -69,4 +69,8 @@ public class DrugStorage
     private String description;
 
 
+    //添加一个保质期
+    @Column(name = "canUseTime",columnDefinition = "int",nullable = false)
+    private int canUseTime;
+
 }
