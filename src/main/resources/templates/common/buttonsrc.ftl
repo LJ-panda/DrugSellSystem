@@ -12,10 +12,9 @@
 <script src="${springMacroRequestContext.contextPath}/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
+
 <script src="${springMacroRequestContext.contextPath}/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="${springMacroRequestContext.contextPath}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
 <script src="${springMacroRequestContext.contextPath}/js/demo/datatables-demo.js"></script>
 
 <#--
@@ -464,7 +463,10 @@
         };
     }
 
+</script>
 
+<#---->
+<script>
     /**
      * 用于用户选择数据类型的响应函数
      * 根据类型获取表格
@@ -485,6 +487,7 @@
             $("#choice-val").val(elVal);
 
             changeExcelUrl(elVal);  //该变url
+
             let flag=false;
             let i;
             console.log("classSet01:"+JSON.stringify(dataTableClassSet));
@@ -515,11 +518,11 @@
             {
                 baseUrl=baseUrl+elVal;
                 $.get(baseUrl,function (data) {
-                   if(data.code!=="OK")
-                   {
-                       //屏蔽掉正常获取表格的干扰
-                       ajaxRepAlert(data);
-                   }
+                    if(data.code!=="OK")
+                    {
+                        //屏蔽掉正常获取表格的干扰
+                        ajaxRepAlert(data);
+                    }
                     //data.replace("class=\"table table-bordered\"","class=\"table table-bordered data-table-mine-"+elVal+"\"");
                     data=data.substring(0,data.indexOf("\"")+1)+"data-table-mine-"+elVal+" "+data.substring(data.indexOf("\"")+1,data.length);
                     dataTableClassSet.push("data-table-mine-"+elVal);
@@ -534,6 +537,7 @@
             $("#excel-btn").attr("href","");
             $("#excel-btn").hide();
         }
+
     }
 
 
@@ -554,6 +558,8 @@
         //调用别的函数
         logData(type);
     }
+
+
     function logData(type)
     {
         let url=null;
@@ -617,7 +623,7 @@
                     }
                     if (baseData.msg==="drugList")
                     {
-                        el=el+"<td><button class='btn btn-danger' value='"+type+":"+data[i].id+"' onclick='dataTableOperation(this)'>删除</button></td>";
+                        el=el+"<td><button class=\"btn btn-danger\" value=\""+type+":"+data[i].id+"\" onclick=\"dataTableOperation(this)\">删除</button></td>";
                     }
                     else if (baseData.msg==="userList")
                     {
@@ -630,8 +636,8 @@
                         {
                             showMsg="禁用";
                         }
-                        let td2="<td><button class='btn btn-primary' onblur='dataTableOperation(this)' value='"+type+":"+data[i].id+":"+1+"'>"+showMsg+"</button></td>";
-                        let td1="<td><button class='btn btn-danger' onclick='dataTableOperation(this)' value='"+type+":"+data[i].id+":"+0+"'>删除</button></td>";
+                        let td2="<td><button class=\"btn btn-primary\" onblur=\"dataTableOperation(this)\" value=\""+type+":"+data[i].id+":"+1+"\">"+showMsg+"</button></td>";
+                        let td1="<td><button class=\"btn btn-danger\" onclick=\"dataTableOperation(this)\" value=\""+type+":"+data[i].id+":"+0+"\">删除</button></td>";
 
                         el=el+td1+td2;
                     }
@@ -640,6 +646,9 @@
                     console.log("class是:"+"data-table-mine-"+type);
                     $(".data-table-mine-"+type+" tbody").append(el);
                 }
+                //选择改变后初始化dataTable
+                //需要表格已经加载
+                dataTableInit();
             }
         })
     }
@@ -664,15 +673,15 @@
             case "6":
                 break;
             case "7":
-               if (typeAndId[2]==="0")
-               {
-                   url=url+"user/del/"+typeAndId[1];   //删除
-               }
-               else
-               {
-                   url=url+"user/ban/"+typeAndId[1];   //禁用
-               }
-               break;
+                if (typeAndId[2]==="0")
+                {
+                    url=url+"user/del/"+typeAndId[1];   //删除
+                }
+                else
+                {
+                    url=url+"user/ban/"+typeAndId[1];   //禁用
+                }
+                break;
         }
 
         $.get(url,function (data)
@@ -731,4 +740,20 @@
     }
 
 
+</script>
+
+<#--分页插件函数-->
+<script>
+    /**
+     * 需要每次变换后进行调用
+     * 通过获取dataTable每次渲染包装的div中的原始表格，将需要隐藏的表格加入到原容器
+     * 然后删除包装的div以及其中所有
+     * 下一次依旧可以利用原来的表格，不需要服务端渲染
+     * 减少渲染压力
+     */
+    function dataTableInit() {
+        $(".table-data-container").append($("#dataTable_wrapper .drugSystem-dataTable"));
+        $("#dataTable_wrapper").remove();
+        $("#dataTable").DataTable();
+    }
 </script>

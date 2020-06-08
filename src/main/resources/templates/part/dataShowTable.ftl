@@ -2,7 +2,7 @@
 js获取后增加 data-table-mine-+类型的class 用于标识
 显示各个数据表的表格生成
 -->
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered drugSystem-dataTable" id="dataTable" width="100%" cellspacing="0">
     <thead>
     <tr>
         <#if type=0>
