@@ -47,7 +47,11 @@ public class ShiroConfig
         filterMap.put("/view/part/details","anon");
         filterMap.put("/view/test","anon");
 
-        filterMap.put("/swagger-*","anon");
+        //swagger
+        filterMap.put("/swagger-ui.html", "anon");
+        filterMap.put("/webjars/**", "anon");
+        filterMap.put("/v2/**", "anon");
+        filterMap.put("/swagger-resources/**", "anon");
 
         //登出
         filterMap.put("/view/part/logoutSystem","logout");
