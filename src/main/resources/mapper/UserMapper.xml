@@ -7,10 +7,21 @@
         INSERT INTO t_user(userName,password,email,status<if test="description!=null">,description</if>)
         VALUES(#{userName},#{password},#{email},#{status}<if test="description!=null">,#{description}</if>)
     </insert>
+    <update id="updateUserStatus">
+        UPDATE t_user SET status=-1*status WHERE id = #{id}
+    </update>
+    <delete id="delById">
+        DELETE FROM t_user WHERE id=#{id}
+    </delete>
     <select id="queryAllUser" resultType="com.clay.system.model.enity.User">
-        SELECT userName,email,status,description FROM t_user
+        SELECT id,userName,email,status,description FROM t_user
     </select>
     <select id="queryUserByEmail" resultType="com.clay.system.model.enity.User">
         SELECT id,userName,email,status,password FROM t_user WHERE email = #{email}
     </select>
+    <select id="queryById" resultType="com.clay.system.model.enity.User">
+        SELECT id,userName,email,status,password FROM t_user WHERE id = #{id}
+    </select>
+
+
 </mapper>

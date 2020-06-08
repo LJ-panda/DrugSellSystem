@@ -2,6 +2,7 @@ package com.clay.system.service.imp;
 
 import com.clay.system.mapper.UserAndPermissionMapper;
 import com.clay.system.mapper.UserMapper;
+import com.clay.system.model.enity.Permission;
 import com.clay.system.model.enity.User;
 import com.clay.system.service.UserService;
 import lombok.AllArgsConstructor;
@@ -66,6 +67,39 @@ public class UserServiceImp implements UserService
         user.getPermissions()
                 .forEach(item->upMapper.insert(item.getId(),user1.getId()));
         return v;
+    }
+
+    @Override
+    public void changeUserStatus(int id) throws SystemException {
+        List<Permission>permissionList=upMapper.queryByUserEmail(userMapper.queryById(id).getEmail());
+        for (Permission p:permissionList)
+        {
+            if (p.getName().equals("*"))
+            {
+                throw new SystemException("该用户拥有最高权限，你无权修改其状态！");
+            }
+        }
+        userMapper.updateUserStatus(id);
+    }
+
+    /**
+     * 删除后记得清除权限
+     * @param id userId
+     * @throws SystemException
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void delById(int id) throws SystemException {
+        List<Permission>permissionList=upMapper.queryByUserEmail(userMapper.queryById(id).getEmail());
+        for (Permission p:permissionList)
+        {
+            if (p.getName().equals("*"))
+            {
+                throw new SystemException("该用户拥有最高权限，你无权删除");
+            }
+        }
+        userMapper.delById(id);
+        upMapper.delByUid(id);
     }
 
     @Override

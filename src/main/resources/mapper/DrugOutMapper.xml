@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.system.mapper.DrugOutMapper">
+
+    <insert id="insert" parameterType="com.clay.system.model.enity.TimeOutDrug">
+        INSERT INTO t_timeOutDrug(drugName,drugCode,drugNum,typeCode,supplierCode,singlePrice,description)
+        VALUES(#{drugName},#{drugCode},#{drugNum},#{typeCode},#{supplierCode},#{singlePrice},#{description})
+    </insert>
+    <insert id="insertAll">
+        INSERT INTO t_timeOutDrug(drugName,drugCode,drugNum,typeCode,supplierCode,singlePrice,description)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.drugName},
+            #{item.drugCode},
+            #{item.drugNum},
+            #{item.typeCode},
+            #{item.supplierCode},
+            #{item.singlePrice},
+            #{item.description}
+            )
+        </foreach>
+    </insert>
+    <select id="queryAll" resultType="com.clay.system.model.enity.TimeOutDrug">
+        SELECT * FROM t_timeOutDrug
+    </select>
+    <select id="queryByTypeCode" resultType="com.clay.system.model.enity.TimeOutDrug">
+        SELECT * FROM t_timeOutDrug WHERE typeCode=#{typeCode}
+    </select>
+    <select id="queryBySupplierCode" resultType="com.clay.system.model.enity.TimeOutDrug">
+        SELECT * FROM t_timeOutDrug WHERE supplierCode=#{supplierCode}
+    </select>
+</mapper>

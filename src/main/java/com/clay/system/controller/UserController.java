@@ -93,7 +93,41 @@ public class UserController
     {
         return new SystemResponse()
                 .success()
-                .message("ok")
+                .message("userList")
                 .data(userService.getAll());
+    }
+
+    /**
+     * 用户删除
+     * @param id id
+     * @return
+     * @throws SystemException
+     */
+    @RequiresPermissions("user:delete")
+    @Description(description = "删除用户")
+    @GetMapping(value = "/del/{id}")
+    public SystemResponse delById(@PathVariable int id) throws SystemException {
+        userService.delById(id);
+        return new SystemResponse()
+                .success()
+                .message("user delete ok")
+                .data(null);
+    }
+
+    /**
+     * 修改用户状态
+     * @param id
+     * @return
+     * @throws SystemException
+     */
+    @RequiresPermissions("user:update")
+    @Description(description = "改变用户状态")
+    @GetMapping(value = "/ban/{id}")
+    public SystemResponse banUserById(@PathVariable int id) throws SystemException {
+        userService.changeUserStatus(id);
+        return new SystemResponse()
+                .success()
+                .message("update status ok")
+                .data(null);
     }
 }

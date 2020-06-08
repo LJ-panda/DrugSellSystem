@@ -18,9 +18,11 @@ js获取后增加 data-table-mine-+类型的class 用于标识
             <th>药物余量</th>
             <th>单价</th>
             <th>入库时间</th>
+            <th>过期时间</th>
             <th>药物类型</th>
             <th>供应商代码</th>
             <th>药物简介</th>
+            <th>操作</th>
         <#elseif type=2>
             <th>药物类型代码</th>
             <th>类型名</th>
@@ -40,13 +42,29 @@ js获取后增加 data-table-mine-+类型的class 用于标识
             <th>采购代码</th>
             <th>总开支</th>
             <th>小记</th>
-            <th>操作</th>
         <#elseif type=5>
             <th>ID</th>
             <th>交易时间</th>
             <th>单号代码</th>
             <th>总价</th>
             <th>详情</th>
+        <#elseif type=6>
+            <th>ID</th>
+            <th>药物名</th>
+            <th>代码</th>
+            <th>数量</th>
+            <th>类型代码</th>
+            <th>供应商代码</th>
+            <th>单价</th>
+            <th>描述</th>
+        <#elseif type=7>
+            <#--系统用户报表-->
+            <th>ID</th>
+            <th>用户名</th>
+            <th>Email</th>
+            <th>状态(1可用/-1锁定)</th>
+            <th>描述</th>
+            <th colspan="2">操作</th>
         </#if>
     </tr>
     </thead>
@@ -65,9 +83,11 @@ js获取后增加 data-table-mine-+类型的class 用于标识
                     <th>药物余量</th>
                     <th>单价</th>
                     <th>入库时间</th>
+                    <th>过期时间</th>
                     <th>药物类型</th>
                     <th>供应商代码</th>
                     <th>药物简介</th>
+                    <th>操作</th>
             <#elseif type=2>
                     <th>药物类型代码</th>
                     <th>类型名</th>
@@ -87,13 +107,29 @@ js获取后增加 data-table-mine-+类型的class 用于标识
                     <th>采购代码</th>
                     <th>总开支</th>
                     <th>小记</th>
-                    <th>操作</th>
             <#elseif type=5>
                     <th>ID</th>
                     <th>交易时间</th>
                     <th>单号代码</th>
                     <th>总价</th>
                     <th>详情</th>
+            <#elseif type=6>
+                <th>ID</th>
+                <th>药物名</th>
+                <th>代码</th>
+                <th>数量</th>
+                <th>类型代码</th>
+                <th>供应商代码</th>
+                <th>单价</th>
+                <th>描述</th>
+            <#elseif type=7>
+            <#--系统用户报表-->
+                <th>ID</th>
+                <th>用户名</th>
+                <th>Email</th>
+                <th>状态(1可用/-1锁定)</th>
+                <th>描述</th>
+                <th colspan="2">操作</th>
             </#if>
     </tr>
     </tfoot>

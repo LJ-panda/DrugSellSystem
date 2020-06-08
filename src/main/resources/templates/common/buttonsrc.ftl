@@ -229,13 +229,14 @@
         let userName=$("#user_name").val();
         let email=$("#user_email").val();
         let status=$("#user_status").val();
+        let description=$("#user_des").val();
         let password=$("#user_pwd").val();
         if(password!=$("#user_pwd2").val())
         {
             alert("两次密码不同");
             return;
         }
-        if (userName.length===0||email.length===0||password.length===0)
+        if (userName.length===0||email.length===0||password.length===0||description.length===0)
         {
             alert("请完整的填写数据！");
         }
@@ -244,6 +245,7 @@
             email:email,
             status:status,
             password:password,
+            description:description,
             permissions:ADDED_USER_PER
         };
 
@@ -284,6 +286,17 @@
    主要是用户添加采购记录
 -->
 <script>
+
+    /**
+     * 日期检测
+     * 简单的检测日期格式
+     * 没必要
+     */
+     function checkCanUseTime(elNow)
+    {
+        let canUseTime=$(elNow).val();
+
+    }
 
     /*
      *
@@ -412,7 +425,7 @@
             let singlePrice=els[i].getElementsByClassName("singlePrice")[0].value;
             let typeCode=els[i].getElementsByClassName("typeCode")[0].value;
             let description=els[i].getElementsByClassName("description")[0].value;
-
+            let canUseTime=els[i].getElementsByClassName("canUseTime")[0].value;
             //供应商数据
             let supplier_name=els[i].getElementsByClassName("supplier_name")[0].value;
             let supplier_brand=els[i].getElementsByClassName("supplier_brand")[0].value;
@@ -421,13 +434,14 @@
             let supplier_address=els[i].getElementsByClassName("supplier_address")[0].value;
 
             if (!(drugName.length!==0&&drugNum!==0&&singlePrice!==0&&typeCode.length!==0&&description.length!==0&&
-                supplier_name.length!==0&&supplier_brand.length!==0&&supplier_phoneNum.length!==0&&supplier_email.length!==0&&supplier_address.length!==0))
+                supplier_name.length!==0&&supplier_brand.length!==0&&supplier_phoneNum.length!==0&&supplier_email.length!==0&&supplier_address.length!==0&&canUseTime.length!==0))
             {
                 alert("请按要求填写完表格的所有数据");
                 return null;
             }
             let aDrug={
                 drugName:drugName,
+                canUseTime:canUseTime,
                 drugNum:drugNum,
                 singlePrice:singlePrice,
                 typeCode:typeCode.split(":")[0],
@@ -566,7 +580,14 @@
                 //console.log("switch_4");
                 break;
             case "5":
-                url="${springMacroRequestContext.contextPath}/api/sell/queryAll"
+                url="${springMacroRequestContext.contextPath}/api/sell/queryAll";
+                break;
+            case "6":
+                url="${springMacroRequestContext.contextPath}/api/outdrug/query";
+                break;
+            case "7":
+                url="${springMacroRequestContext.contextPath}/api/user/query";
+                break;
         }
         console.log("请求Url："+url);
         $.get(url,function (data) {
@@ -575,6 +596,7 @@
                 //屏蔽掉正常获取数据的干扰
                 ajaxRepAlert(data);
             }
+            let baseData=data;
             if (data.code==='OK')
             {
                 data=data.data;
@@ -593,6 +615,26 @@
                         el=el+"<td>"+str.toString()+"</td>";
                         console.log(k+":"+data[i][k].toString());
                     }
+                    if (baseData.msg==="drugList")
+                    {
+                        el=el+"<td><button class='btn btn-danger' value='"+type+":"+data[i].id+"' onclick='dataTableOperation(this)'>删除</button></td>";
+                    }
+                    else if (baseData.msg==="userList")
+                    {
+                        let showMsg;
+                        if (data[i].status===-1)
+                        {
+                            showMsg="激活";
+                        }
+                        else
+                        {
+                            showMsg="禁用";
+                        }
+                        let td2="<td><button class='btn btn-primary' onblur='dataTableOperation(this)' value='"+type+":"+data[i].id+":"+1+"'>"+showMsg+"</button></td>";
+                        let td1="<td><button class='btn btn-danger' onclick='dataTableOperation(this)' value='"+type+":"+data[i].id+":"+0+"'>删除</button></td>";
+
+                        el=el+td1+td2;
+                    }
                     el=el+"</tr>";
                     console.log("el:"+el);
                     console.log("class是:"+"data-table-mine-"+type);
@@ -600,6 +642,51 @@
                 }
             }
         })
+    }
+
+    /**
+     * el 是this引用
+     * 该函数用于处理表格的某些操作
+     */
+
+    function dataTableOperation(el)
+    {
+        console.log("节点值："+$(el).val());
+        let typeAndId=$(el).val().split(":");
+        let url="${springMacroRequestContext.contextPath}/api/";
+        switch (typeAndId[0])
+        {
+            case "1":
+                url=url+"storage/del/"+typeAndId[1];
+                break;
+            case "2":
+                break;
+            case "6":
+                break;
+            case "7":
+               if (typeAndId[2]==="0")
+               {
+                   url=url+"user/del/"+typeAndId[1];   //删除
+               }
+               else
+               {
+                   url=url+"user/ban/"+typeAndId[1];   //禁用
+               }
+               break;
+        }
+
+        $.get(url,function (data)
+        {
+            if (data.code==="OK")
+            {
+                flushData();
+                alert("操作成功");
+            }
+            else
+            {
+                alert("code:"+data.code+"\n信息："+data.msg);
+            }
+        });
     }
 
     /*
@@ -628,6 +715,12 @@
                 break;
             case "5":
                 excelUrl=excelUrl+"sellRecord";
+                break;
+            case "6":
+                excelUrl=excelUrl+"timeOutDrug";
+                break;
+            case "7":
+                excelUrl=excelUrl+"user";
                 break;
             default:
                 excelUrl="#";

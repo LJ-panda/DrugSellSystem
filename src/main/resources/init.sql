@@ -78,6 +78,12 @@ INSERT INTO t_permission(name,description)VALUES('permission:queryAll','nothing'
 
 
 /**
+ * 过期药物权限
+ */
+INSERT INTO t_permission(name,description)VALUES('outTimeDrug:query','nothing');
+
+
+/**
  * Excel 报表权限
  */
 INSERT INTO t_permission(name,description)VALUES('excel:query:suppliers','nothing');
@@ -86,6 +92,8 @@ INSERT INTO t_permission(name,description)VALUES('excel:query:purchaseRecord','n
 INSERT INTO t_permission(name,description)VALUES('excel:query:typeCode','nothing');
 INSERT INTO t_permission(name,description)VALUES('excel:query:drugStorage','nothing');
 INSERT INTO t_permission(name,description)VALUES('excel:query:log','nothing');
+INSERT INTO t_permission(name,description)VALUES('excel:query:outDrug','nothing');
+
 
 
 /**

@@ -47,6 +47,8 @@ public class ShiroConfig
         filterMap.put("/view/part/details","anon");
         filterMap.put("/view/test","anon");
 
+        filterMap.put("/swagger-*","anon");
+
         //登出
         filterMap.put("/view/part/logoutSystem","logout");
         //需要认证的url

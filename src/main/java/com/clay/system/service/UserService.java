@@ -22,4 +22,8 @@ public interface UserService
     int addUser(User user) throws SystemException;
 
     List<User> getAll();
+
+    void delById(int id) throws SystemException;
+
+    void changeUserStatus(int id) throws SystemException;
 }

@@ -2,11 +2,13 @@ package com.clay.system.model.vo;
 
 import com.clay.system.model.enity.DrugSuppliersInfo;
 import com.clay.system.utils.StaticUtils;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -23,7 +25,7 @@ import java.util.Objects;
  * 还应该封装供应商等信息
  */
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Drug
 {
     private int id; //药品库id
@@ -39,7 +41,13 @@ public class Drug
     @Positive(message = "单价不可小于等于0")
     private float singlePrice;
 
+    @Positive(message = "药物类型代码不可小于等于0")
     private int typeCode;   //通过增添页下拉选取
+
+
+    @Future(message = "过期时间必须是将来")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")   //spring mvc 的格式化器
+    private Date canUseTime;  //新增字段，用于接收过期时间，采用字符串接收，格式：yyyy-MM-dd
 
     @Valid
     private DrugSuppliersInfo suppliersInfo;  //供应商

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +33,19 @@ public class DrugStorageController
     {
         return new SystemResponse()
                 .success()
-                .message("ok")
+                .message("drugList")
                 .data(storageService.getAll());
+    }
+
+    @RequiresPermissions(value = "storage:delete")
+    @Description(description = "通过id删除药物")
+    @GetMapping(value = "/del/{id}")
+    public SystemResponse del(@PathVariable int id)
+    {
+        storageService.delById(id);
+        return new SystemResponse()
+                .success()
+                .message("删除ok")
+                .data(null);
     }
 }

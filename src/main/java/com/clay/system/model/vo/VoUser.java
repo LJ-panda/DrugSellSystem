@@ -41,6 +41,7 @@ public class VoUser
     private int status;
 
     @Size(max = 150,message = "描述必须在150字内")
+    @NotBlank(message = "用户描述不可为空")
     private String description;
 
     @Valid

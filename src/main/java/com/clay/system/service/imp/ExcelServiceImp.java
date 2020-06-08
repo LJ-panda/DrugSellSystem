@@ -57,6 +57,10 @@ public class ExcelServiceImp implements ExcelService
 
     private SellRecordDetailsService sellDetailsService;
 
+    private DrugTimeOutService timeOutService;
+
+    private UserService userService;
+
     /**
      * 产生药物采购报表的服务
      * @param response rep
@@ -200,6 +204,49 @@ public class ExcelServiceImp implements ExcelService
                     excelList.add(excel);
                 });
         deal(response,"系统日志报表",excelList,LogExcel.class);
+    }
+
+    /**
+     * 用户信息报表服务
+     * @param response rep
+     * @throws IOException e
+     */
+    @Override
+    public void buildUserExcel(HttpServletResponse response) throws IOException {
+        List<UserExcel>excelList=new LinkedList<>();
+        userService.getAll()
+                .forEach(item->{
+                    UserExcel excel=new UserExcel();
+                    excel.setName(item.getUserName());
+                    excel.setEmail(item.getEmail());
+                    excel.setStatus(item.getStatus()==1?"可用":"锁定");
+                    excel.setDes(item.getDescription());
+                    excelList.add(excel);
+                });
+        deal(response,"用户信息报表",excelList,UserExcel.class);
+    }
+
+    /**
+     * 过期药物的报表服务
+     * @param response rep
+     * @throws IOException e
+     */
+    @Override
+    public void buildTimeOutDrugExcel(HttpServletResponse response) throws IOException {
+        List<DrugTimeOutExcel>excelList=new LinkedList<>();
+        timeOutService.getAll()
+                .forEach(item->{
+                    DrugTimeOutExcel excel=new DrugTimeOutExcel();
+                    excel.setDrugCode(item.getDrugCode());
+                    excel.setDescription(item.getDescription());
+                    excel.setDrugName(item.getDrugName());
+                    excel.setId(item.getId());
+                    excel.setTypeName(codeService.getByCodeId(item.getTypeCode()).getTypeName());
+                    excel.setSinglePrice(item.getSinglePrice());
+                    excel.setSupplierCode(item.getSupplierCode());
+                    excelList.add(excel);
+                });
+        deal(response,"过期药品报表",excelList,DrugTimeOutExcel.class);
     }
 
     /**

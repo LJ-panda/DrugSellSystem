@@ -79,6 +79,8 @@ public class ConvertUtils
         storage.setDrugNum(drug.getDrugNum());            //数量
         storage.setTypeCodeId(drug.getTypeCode());      //类型代码
         storage.setSupplier(drug.getSuppliersInfo().getSupplierCode());      //供应商
+        storage.setCreateTime(drug.getCreateTime());
+        storage.setCanUseTime(drug.getCanUseTime());
         log.debug("转换的drug对象:{}",storage);
         return storage;
     }
@@ -122,5 +124,19 @@ public class ConvertUtils
                     item.setOrderCode(sellRecord.getOrderCode());
                 });
         return sellRecord;
+    }
+
+
+    public static TimeOutDrug buildOutDrug(DrugStorage storage)
+    {
+        TimeOutDrug drug=new TimeOutDrug();
+        drug.setDescription(storage.getDescription());
+        drug.setDrugCode(storage.getDrugCode());
+        drug.setDrugName(storage.getDrugName());
+        drug.setDrugNum(storage.getDrugNum());
+        drug.setSinglePrice(storage.getSinglePrice());
+        drug.setSupplierCode(storage.getSupplier());
+        drug.setTypeCode(storage.getTypeCodeId());
+        return drug;
     }
 }

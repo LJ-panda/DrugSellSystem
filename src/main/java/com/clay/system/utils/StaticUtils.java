@@ -10,4 +10,5 @@ package com.clay.system.utils;
 public class StaticUtils
 {
     public static final String DATE_PATTERN="yyyy-MM-dd hh:mm:ss";
+
 }

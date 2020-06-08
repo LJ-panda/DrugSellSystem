@@ -49,7 +49,7 @@ public abstract class BaseAop
     {
         SystemLog log=new SystemLog();
         log.setLogType(type.getVal());
-        log.setLogBody(msg==null?"无":msg);
+        log.setLogBody(msg==null?"无信息":msg);
         return log;
     }
 }

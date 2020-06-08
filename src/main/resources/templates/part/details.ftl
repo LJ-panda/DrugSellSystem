@@ -9,6 +9,10 @@
     </tr>
 
     <tr>
+        <td>可用时间：</td>
+        <td colspan="2"><input type="date" name="canUseTime" class="canUseTime" required="required"></td>
+    </tr>
+    <tr>
         <td>采购数：</td>
         <td colspan="2"><input type="text" name="drugNum" class="drugNum" required="required"/></td>
     </tr>

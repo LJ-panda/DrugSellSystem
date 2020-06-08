@@ -6,6 +6,9 @@
         INSERT INTO t_userAndPermission(userId,pId)
         VALUES(#{uId},#{pId})
     </insert>
+    <delete id="delByUid">
+        DELETE FROM t_userAndPermission WHERE userId=#{uId}
+    </delete>
 
 
     <select id="queryByUserEmail" resultType="com.clay.system.model.enity.Permission">

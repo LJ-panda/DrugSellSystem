@@ -50,8 +50,12 @@ public class DrugStorage
     @Column(name = "createTime",columnDefinition = "timestamp")
     private Date createTime;
 
+    //添加一个保质期
+    @Column(name = "canUseTime",columnDefinition = "date",nullable = false)
+    private Date canUseTime;
+
     //新增库存等的时间
-    //两个 timestamp 字段会报错
+    //两个 timestamp 字段会报错,以弃用
     @DateTimeFormat(pattern = StaticUtils.DATE_PATTERN)
     @Column(name = "updatedTime",columnDefinition = "datetime")
     private Date updatedTime;
@@ -69,8 +73,6 @@ public class DrugStorage
     private String description;
 
 
-    //添加一个保质期
-    @Column(name = "canUseTime",columnDefinition = "int",nullable = false)
-    private int canUseTime;
+
 
 }

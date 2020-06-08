@@ -32,4 +32,6 @@ public interface DrugStorageMapper
     DrugStorage queryByCode(int drugCode);
 
     int update(DrugStorage drugStorage);
+
+    int delById(int id);
 }

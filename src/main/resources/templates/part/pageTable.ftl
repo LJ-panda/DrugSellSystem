@@ -16,10 +16,12 @@
                     <option value="3">3:供应商数据</option>
                     <option value="4">4:采购记录</option>
                     <option value="5">5:销售记录</option>
+                    <option value="6">6:过期药品</option>
+                    <option value="7">7:用户表</option>
                 </select>
                 <input type="hidden" value="-1" id="choice-val">
                 <a id="excel-btn" class="btn btn-primary" style="display: none" href="#">导出Excel</a>
-                <a id="flush-table" class="btn btn-primary" onclick="flushData()">手动刷新该表</a>
+                <a id="flush-table" class="btn btn-primary" onclick="flushData()" href="">手动刷新该表</a>
                 <div class="card bg-info text-white">
                     <div class="card-body">详细易看数据请导出</div>
                 </div>

@@ -23,4 +23,10 @@ public interface UserMapper
     List<User> queryAllUser();
 
     User queryUserByEmail(String email);
+
+    User queryById(int id);
+
+    void delById(int id);
+
+    void updateUserStatus(int id);
 }

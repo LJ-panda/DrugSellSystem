@@ -148,6 +148,8 @@ public class ViewController
            case 5:
                model.addAttribute("type",5);
                break;
+           case 6:
+               model.addAttribute("type",6);
        }
        return "part/dataShowTable";
     }

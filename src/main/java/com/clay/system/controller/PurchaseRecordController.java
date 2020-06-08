@@ -4,6 +4,10 @@ import com.clay.system.annotation.Description;
 import com.clay.system.model.SystemResponse;
 import com.clay.system.model.vo.BuyRecord;
 import com.clay.system.service.RecordService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -24,8 +28,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @Slf4j
-//@Validated
-
+@Api(value = "采购记录控制器，涉及药物入库问题")
 @RestController
 @RequestMapping(value = "/api/record")
 @AllArgsConstructor
@@ -40,6 +43,12 @@ public class PurchaseRecordController
      * @param record 记录
      * @return
      */
+    @ApiOperation(value = "采购提交接口",notes = "提交采购的数据表格")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tip",value = "采购备注",dataType = "String",defaultValue = "备注"),
+            @ApiImplicitParam(name = "operationUser",value = "采购人",dataType = "String",defaultValue = "采购测试员"),
+            @ApiImplicitParam(name = "drugs",value = "采购药物集合",dataType = "Drug")
+    })
     @RequiresPermissions("purchaseRecord:insert")
     @Description(description = "新增采购记录")
     @PostMapping(value = "/add")
@@ -60,6 +69,7 @@ public class PurchaseRecordController
      * 需要权限：purchaseRecord:queryAll
      * @return
      */
+    @ApiOperation(value = "查询所有采购记录")
     @RequiresPermissions("purchaseRecord:queryAll")
     @Description(description = "查询All采购记录")
     @GetMapping(value = "/query")

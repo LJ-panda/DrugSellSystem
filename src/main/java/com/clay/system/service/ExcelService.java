@@ -58,6 +58,21 @@ public interface ExcelService
     void buildLogExcel(HttpServletResponse response) throws IOException;
 
     /**
+     * 过期药物的报表服务
+     * @param response rep
+     * @throws IOException e
+     */
+    void buildTimeOutDrugExcel(HttpServletResponse response) throws IOException;
+
+
+    /**
+     * 用户信息报表服务
+     * @param response rep
+     * @throws IOException e
+     */
+    void buildUserExcel(HttpServletResponse response) throws IOException;
+
+    /**
      * 工具方法，
      * 用于封装 Excel 处理的共同部分，
      * 并将数据写入输出流

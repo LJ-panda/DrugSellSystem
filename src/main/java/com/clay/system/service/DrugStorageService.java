@@ -20,4 +20,14 @@ public interface DrugStorageService
     DrugStorage getByCode(int code);
 
     List<DrugStorage> getAll();
+
+    /**
+     * 将查询的药物过滤一遍
+     * @param list 查询的所有
+     * @return 有用的
+     */
+    List<DrugStorage>getCanUseDrug(List<DrugStorage>list);
+
+
+    void delById(int id);
 }
