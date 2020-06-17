@@ -66,7 +66,8 @@ public class SellRecordServiceImp implements SellRecordService, SellRecordDetail
     @Transactional(rollbackFor = Exception.class,isolation = Isolation.READ_COMMITTED)
     @Override
     public void saveRecord(SellRecord record)
-            throws DrugSystemException {
+            throws DrugSystemException
+    {
         saveDetails(record.getDetailsList());
         recordMapper.insertRecord(record);
     }

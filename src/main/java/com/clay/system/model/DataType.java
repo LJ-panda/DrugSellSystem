@@ -6,6 +6,8 @@ package com.clay.system.model;
  * @Blog www.wandererchen.xyz
  * @Date 2020/6/5 17:32
  * @Version 1.0
+ *
+ * 暂且弃用
  */
 public enum  DataType
 {

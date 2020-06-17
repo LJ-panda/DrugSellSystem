@@ -1,8 +1,6 @@
 package com.clay.system.controller;
 
 import com.clay.system.annotation.Description;
-import com.clay.system.model.DataType;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 /**
@@ -126,7 +123,7 @@ public class ViewController
      */
     @Description(description = "数据报表表格生成")
     @GetMapping(value = "/part/dataTable/{type}")
-    public String getDataTable(@PathVariable @PositiveOrZero(message = "必须大于0") int type, Model model)
+    public String getDataTable(@PathVariable @PositiveOrZero(message = "必须大于等于0") int type, Model model)
     {
        switch (type)
        {

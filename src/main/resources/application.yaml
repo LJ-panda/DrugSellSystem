@@ -4,7 +4,7 @@ server:
     context-path: /drugSystem
 spring:
   profiles:
-    active: dev
+    active: pro
 
   ## freemarker配置
   freemarker:

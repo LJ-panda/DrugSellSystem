@@ -8,11 +8,9 @@ import com.clay.system.service.DrugTimeOutService;
 import com.clay.system.utils.ConvertUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +90,7 @@ public class StorageServiceImp implements DrugStorageService
 
     /**
      * 进行过滤操作
-     * @return
+     * @return l
      */
     @Override
     public List<DrugStorage> getAll()
@@ -110,7 +108,8 @@ public class StorageServiceImp implements DrugStorageService
     @Override
     public List<DrugStorage> getCanUseDrug(List<DrugStorage> list)
     {
-        Date now=new Date();
+        Date now=new Date();            //获取当前日期
+
         List<TimeOutDrug>outDrug = new LinkedList<>();
         for (DrugStorage drug:list)
         {
@@ -121,10 +120,12 @@ public class StorageServiceImp implements DrugStorageService
                 outDrug.add(ConvertUtils.buildOutDrug(drug));
             }
         }
+
         if (!outDrug.isEmpty())
         {
             timeOutService.saveAll(outDrug);
         }
+
         return list;
     }
 }

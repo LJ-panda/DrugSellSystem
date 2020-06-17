@@ -1,6 +1,7 @@
 package com.clay.system.mapper;
 
 import com.clay.system.model.enity.Permission;
+import com.clay.system.model.enity.UserAndPermission;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface UserAndPermissionMapper
     int insert(int pId,int uId);
 
     void delByUid(int uId);
+
+    UserAndPermission queryBy(int uId,int pId);
 }

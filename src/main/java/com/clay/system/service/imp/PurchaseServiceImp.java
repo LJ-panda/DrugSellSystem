@@ -90,9 +90,9 @@ public class PurchaseServiceImp implements RecordService, DetailsService
     @Override
     public int saveRecord(BuyRecord record)
     {
-        log.info("sevice 层进行采购记录写库:{}",record);
+        log.debug("sevice 层进行采购记录写库:{}",record);
         PurchaseDataModel model= ConvertUtils.RecordConvertToDB(record);
-        log.info("转换后的信息："+model);
+        log.debug("转换后的信息："+model);
         //存储供应商信息
         supplierService.saveSuppliers(model.getSuppliersInfos());
         //库存信息

@@ -27,6 +27,4 @@ public interface RecordService
     PurchaseRecord queryARecordByCode(int code);
 
     List<PurchaseRecord> queryAllRecord();
-
-
 }

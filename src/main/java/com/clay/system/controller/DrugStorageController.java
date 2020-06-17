@@ -6,10 +6,13 @@ import com.clay.system.service.DrugStorageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.Positive;
 
 /**
  * @Author clay
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 @Slf4j
+@Validated
 @RestController
 @RequestMapping(value = "/api/storage")
 @AllArgsConstructor
@@ -40,7 +44,8 @@ public class DrugStorageController
     @RequiresPermissions(value = "storage:delete")
     @Description(description = "通过id删除药物")
     @GetMapping(value = "/del/{id}")
-    public SystemResponse del(@PathVariable int id)
+    public SystemResponse del(@PathVariable
+                                          @Positive(message = "药品id不可小于等于0") int id)
     {
         storageService.delById(id);
         return new SystemResponse()

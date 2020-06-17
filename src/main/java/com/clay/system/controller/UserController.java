@@ -1,6 +1,7 @@
 package com.clay.system.controller;
 
 import com.clay.system.annotation.Description;
+import com.clay.system.exception.DrugSystemException;
 import com.clay.system.model.SystemResponse;
 import com.clay.system.model.vo.VoUser;
 import com.clay.system.service.UserService;
@@ -11,13 +12,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.transaction.SystemException;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 /**
  * @Author clay
@@ -72,8 +72,8 @@ public class UserController
     @Description(description = "用户新增")
     @PostMapping(value = "/add")
     public SystemResponse add(@Validated
-                                  @RequestBody VoUser user) throws SystemException {
-        log.info("userData:{}"+user);
+                                  @RequestBody VoUser user) throws DrugSystemException {
+        log.debug("userData:{}",user);
         userService.addUser(ConvertUtils.buildUserByVo(user));
         return new SystemResponse()
                 .success()
@@ -106,7 +106,9 @@ public class UserController
     @RequiresPermissions("user:delete")
     @Description(description = "删除用户")
     @GetMapping(value = "/del/{id}")
-    public SystemResponse delById(@PathVariable int id) throws SystemException {
+    public SystemResponse delById(@PathVariable
+                                      @Positive(message = "用户id必须大于0") int id)
+            throws DrugSystemException{
         userService.delById(id);
         return new SystemResponse()
                 .success()
@@ -123,7 +125,9 @@ public class UserController
     @RequiresPermissions("user:update")
     @Description(description = "改变用户状态")
     @GetMapping(value = "/ban/{id}")
-    public SystemResponse banUserById(@PathVariable int id) throws SystemException {
+    public SystemResponse banUserById(@PathVariable
+                                          @Positive(message = "用户id必须大于0") int id)
+            throws DrugSystemException {
         userService.changeUserStatus(id);
         return new SystemResponse()
                 .success()

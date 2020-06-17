@@ -47,7 +47,7 @@ js获取后增加 data-table-mine-+类型的class 用于标识
             <th>交易时间</th>
             <th>单号代码</th>
             <th>总价</th>
-            <th>详情</th>
+            <#--<th>详情</th>-->
         <#elseif type=6>
             <th>ID</th>
             <th>药物名</th>
@@ -112,7 +112,7 @@ js获取后增加 data-table-mine-+类型的class 用于标识
                     <th>交易时间</th>
                     <th>单号代码</th>
                     <th>总价</th>
-                    <th>详情</th>
+                   <#-- <th>详情</th>-->
             <#elseif type=6>
                 <th>ID</th>
                 <th>药物名</th>

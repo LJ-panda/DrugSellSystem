@@ -1,5 +1,6 @@
 package com.clay.system.service;
 
+import com.clay.system.exception.DrugSystemException;
 import com.clay.system.model.enity.User;
 
 
@@ -19,11 +20,11 @@ public interface UserService
 {
     User getUserByEmail(String email);
 
-    int addUser(User user) throws SystemException;
+    int addUser(User user) throws DrugSystemException;
 
     List<User> getAll();
 
-    void delById(int id) throws SystemException;
+    void delById(int id) throws DrugSystemException;
 
-    void changeUserStatus(int id) throws SystemException;
+    void changeUserStatus(int id) throws  DrugSystemException;
 }

@@ -39,14 +39,12 @@ public class ShiroConfig
         filterMap.put("/js/**","anon");
         filterMap.put("/scss/**","anon");
         filterMap.put("/vendor/**","anon");
-
         //免认证的请求
         filterMap.put("/view/user/toLogin","anon");
         filterMap.put("/api/user/login","anon");
-
+        //test
         filterMap.put("/view/part/details","anon");
         filterMap.put("/view/test","anon");
-
         //swagger
         filterMap.put("/swagger-ui.html", "anon");
         filterMap.put("/webjars/**", "anon");

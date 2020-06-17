@@ -20,4 +20,7 @@
         AND
         u.email = #{email}
     </select>
+    <select id="queryBy" resultType="com.clay.system.model.enity.UserAndPermission">
+        SELECT * FROM t_userAndPermission WHERE userId=#{uId} AND pId = #{pId}
+    </select>
 </mapper>

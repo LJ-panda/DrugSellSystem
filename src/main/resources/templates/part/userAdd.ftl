@@ -15,7 +15,7 @@
 
         <tr>
             <td rowspan="3">
-                <a class="btn btn-primary" href="" onclick="addUserToServer()">点击添加用户</a>
+                <a class="btn btn-primary" onclick="addUserToServer()">点击添加用户</a>
             </td>
             <td>名称：</td>
             <td><input type="text" id="user_name" name="user_name" required="required"/></td>
@@ -57,7 +57,7 @@
         </tr>
 
         <tr>
-            <td rowspan="*"><a class="btn btn-primary" href="" id="user_level_btn" onclick="clickAddPermission()">点击添加权限</a></td>
+            <td rowspan="*"><a class="btn btn-primary" id="user_level_btn" onclick="clickAddPermission()">点击添加权限</a></td>
             <td rowspan="*">
                 <span>权限:</span>
                 <select id="user_level" onclick="queryAndSetPer()">

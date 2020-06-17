@@ -48,8 +48,6 @@
           console.log("id列表："+JSON.stringify(hashSet));
         });
       }
-
-
     }
   </script>
 </head>

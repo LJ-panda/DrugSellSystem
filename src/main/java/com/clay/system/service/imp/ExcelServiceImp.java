@@ -261,7 +261,9 @@ public class ExcelServiceImp implements ExcelService
      * @throws IOException 可能的异常
      */
     @Override
-    public <T>void deal(HttpServletResponse response,String fileName,List<T>excelList,Class<T>clazz) throws IOException {
+    public <T> void deal(HttpServletResponse response,String fileName,List<T>excelList,Class<T>clazz)
+            throws IOException
+    {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("UTF-8");
         String file= URLEncoder.encode(fileName, StandardCharsets.UTF_8);

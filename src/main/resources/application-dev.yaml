@@ -1,12 +1,15 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.100.27.96:3306/drugdb?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/drugdb?characterEncoding=utf-8 #createDatabaseIfNotExist=true&该参数可以自动建库
     username: root
-    password: root
+    password: password
     type: com.alibaba.druid.pool.DruidDataSource
     data: classpath:/init.sql
     initialization-mode: always
+    sql-script-encoding: UTF-8
+
+
   jpa:
     database: mysql
     properties:
@@ -16,4 +19,4 @@ spring:
     hibernate:
       naming:                        #表字段命名策略
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: create
+      ddl-auto: update

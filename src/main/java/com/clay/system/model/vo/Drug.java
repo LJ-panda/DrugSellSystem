@@ -2,8 +2,6 @@ package com.clay.system.model.vo;
 
 import com.clay.system.model.enity.DrugSuppliersInfo;
 import com.clay.system.utils.StaticUtils;
-import io.swagger.annotations.ApiModel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
