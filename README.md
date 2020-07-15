@@ -1,5 +1,5 @@
 # 药物销售管理系统
-### 作者博客：[手可摘星辰](www.wandererchen.xyz)
+### 作者博客：[手可摘星辰](https://www.wandererchen.xyz)
 ### 简介
 >- 涉及技术
 >>Spring、Spring Boot、Spring MVC、Spring Data Jpa、MyBatis、Shiro、MySQL、H2、FreeMarker、JQuery、Bootstarp等。
