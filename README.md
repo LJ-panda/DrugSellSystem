@@ -2,7 +2,7 @@
 ### 作者博客：[手可摘星辰](https://www.wandererchen.xyz)
 ### 简介
 >- 涉及技术
->>Spring、Spring Boot、Spring MVC、Spring Data Jpa、MyBatis、Shiro、MySQL、H2、FreeMarker、JQuery、Bootstarp等。
+>>- Spring、Spring Boot、Spring MVC、Spring Data Jpa、MyBatis、Shiro、MySQL、H2、FreeMarker、JQuery、Bootstarp等。
 >>- 项目采用 Spring Boot 进行快速搭建。
 >>- 使用安全框架 Shiro 实现认证和授权操作。
 >>- 开发阶段采用 MySQL 作为数据库、开发完毕使用 H2 作为数据库，分别对应配置文件 dev 和 pro 两个。
